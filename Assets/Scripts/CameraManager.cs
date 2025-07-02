@@ -1,17 +1,19 @@
-using TMPro;
 using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
     [Header("Other Objects")]
     [SerializeField] private GameObject gameManagerObj;
+    private GameManager gameManager;
     private InputManager inputManager;
 
     [Header("Lerp Camera Position")]
+    [SerializeField] private Vector3 crouchPosition;
     [SerializeField] private Vector3 stayPosition;
     [SerializeField] private Vector3 peekPosition;
 
     [Header("Lerp Camera Rotation")]
+    [SerializeField] private Vector3 crouchRotation;
     [SerializeField] private Vector3 stayRotation;
     [SerializeField] private Vector3 peekRotation;
 
@@ -25,6 +27,7 @@ public class CameraManager : MonoBehaviour
     void Start()
     {
         // Get Other Component
+        gameManager = gameManagerObj.GetComponent<GameManager>();
         inputManager = gameManagerObj.GetComponent<InputManager>();
 
         // Set Parameter
@@ -39,8 +42,12 @@ public class CameraManager : MonoBehaviour
         // 入力状況を取得する
         inputManager.GetAllInput();
 
-        // 覗き
-        Peek();
+        // ゲーム中のみの処理
+        if (gameManager.GetIsStart())
+        {
+            // 覗き
+            Peek();
+        }
     }
 
     void Peek()
@@ -52,6 +59,12 @@ public class CameraManager : MonoBehaviour
         {
             targetPosition = Vector3.Lerp(stayPosition, peekPosition, inputVertical);
             targetRotation = Vector3.Lerp(stayRotation, peekRotation, inputVertical);
+        }
+        // 負方向に入力を受け付けているとき
+        else if (inputVertical < 0f)
+        {
+            targetPosition = Vector3.Lerp(stayPosition, crouchPosition, Mathf.Abs(inputVertical));
+            targetRotation = Vector3.Lerp(stayRotation, crouchRotation, Mathf.Abs(inputVertical));
         }
 
         // 目標パラメータに向けて追跡

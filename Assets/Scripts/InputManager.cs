@@ -29,23 +29,31 @@ public class InputManager : MonoBehaviour
     // “ü—Í‚ÌŽí—Þ
     public InputPattern horizontal;
     public InputPattern vertical;
+    public InputPattern a;
+    public InputPattern b;
 
     void Start()
     {
         horizontal = new InputPattern();
         vertical = new InputPattern();
+        a = new InputPattern();
+        b = new InputPattern();
     }
 
     public void SetIsGetInput()
     {
         horizontal.SetIsGetInput(false);
         vertical.SetIsGetInput(false);
+        a.SetIsGetInput(false);
+        b.SetIsGetInput(false);
     }
 
     public void GetAllInput()
     {
         horizontal.GetInput("Horizontal");
         vertical.GetInput("Vertical");
+        a.GetInput("A");
+        b.GetInput("B");
     }
 
     public bool IsTrgger(InputPattern _inputPattern)
