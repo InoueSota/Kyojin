@@ -43,7 +43,7 @@ public class CameraManager : MonoBehaviour
         inputManager.GetAllInput();
 
         // ƒQ[ƒ€’†‚Ì‚İ‚Ìˆ—
-        if (gameManager.GetIsStart())
+        if (gameManager.GetIsStart() && !gameManager.GetIsFinish())
         {
             // ”`‚«
             Peek();

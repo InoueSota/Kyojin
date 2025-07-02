@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -8,6 +9,7 @@ public class GameManager : MonoBehaviour
 
     // Flag
     private bool isStart;
+    private bool isFinish;
 
     [Header("Game Parameter")]
     [SerializeField] private float maxTime;
@@ -16,6 +18,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Game UI")]
     [SerializeField] private GameObject toStartObj;
+    [SerializeField] private GameObject finishObj;
     [SerializeField] private GameObject timeLimitObj;
     private Text timeLimitText;
     [SerializeField] private Text countText;
@@ -38,17 +41,18 @@ public class GameManager : MonoBehaviour
         inputManager.GetAllInput();
 
         // ゲーム中のみの処理
-        if (isStart)
+        if (isStart && !isFinish)
         {
             // 制限時間
             TimeLimit();
-
             // カウント
             Count();
         }
 
         // ゲーム開始処理
         GameStart();
+        // ゲーム終了処理
+        Finish();
     }
     void GameStart()
     {
@@ -70,6 +74,22 @@ public class GameManager : MonoBehaviour
         // Textに適用
         timeLimitText.text = Mathf.Ceil(timeLimit).ToString();
     }
+    void Finish()
+    {
+        if (!isFinish && timeLimit <= 0f)
+        {
+            // UIの表示／非表示を切り替える
+            timeLimitObj.SetActive(false);
+            finishObj.SetActive(true);
+
+            isFinish = true;
+        }
+
+        if (isFinish && inputManager.IsTrgger(inputManager.a))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
     void Count()
     {
         // Countの増減
@@ -90,4 +110,5 @@ public class GameManager : MonoBehaviour
 
     // Getter
     public bool GetIsStart() { return isStart; }
+    public bool GetIsFinish() { return isFinish; }
 }
