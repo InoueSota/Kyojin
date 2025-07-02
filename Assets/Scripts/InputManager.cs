@@ -27,21 +27,25 @@ public class InputManager : MonoBehaviour
     }
 
     // “ü—Í‚ÌŽí—Þ
-    public InputPattern action;
+    public InputPattern horizontal;
+    public InputPattern vertical;
 
     void Start()
     {
-        action = new InputPattern();
+        horizontal = new InputPattern();
+        vertical = new InputPattern();
     }
 
     public void SetIsGetInput()
     {
-        action.SetIsGetInput(false);
+        horizontal.SetIsGetInput(false);
+        vertical.SetIsGetInput(false);
     }
 
     public void GetAllInput()
     {
-        action.GetInput("Action");
+        horizontal.GetInput("Horizontal");
+        vertical.GetInput("Vertical");
     }
 
     public bool IsTrgger(InputPattern _inputPattern)
