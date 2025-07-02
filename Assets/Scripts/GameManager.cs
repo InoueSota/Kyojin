@@ -24,8 +24,10 @@ public class GameManager : MonoBehaviour
     private Text timeLimitText;
     [SerializeField] private Text countText;
 
-    [Header("Camera")]
+    [Header("Animators")]
     [SerializeField] private Animator cameraAnimator;
+    [SerializeField] private Animator readyAnimator;
+    [SerializeField] private Animator goAnimator;
 
     void Start()
     {
@@ -119,6 +121,8 @@ public class GameManager : MonoBehaviour
     public bool GetIsFinish() { return isFinish; }
 
     // Setter
+    public void SetStartReadyAnimation() { readyAnimator.gameObject.SetActive(true); readyAnimator.SetTrigger("Start"); }
+    public void SetStartGoAnimation() { goAnimator.gameObject.SetActive(true); goAnimator.SetTrigger("Start"); }
     public void SetIsStart(bool _isStart)
     {
         // UIÇÃï\é¶Å^îÒï\é¶ÇêÿÇËë÷Ç¶ÇÈ
