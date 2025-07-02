@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class CameraManager : MonoBehaviour
@@ -14,10 +15,23 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private Vector3 stayRotation;
     [SerializeField] private Vector3 peekRotation;
 
+    [Header("Chase Parameter")]
+    [SerializeField] private float chasePower;
+    private Vector3 targetPosition;
+    private Vector3 targetRotation;
+    private Vector3 nowPosition;
+    private Vector3 nowRotation;
+
     void Start()
     {
         // Get Other Component
         inputManager = gameManagerObj.GetComponent<InputManager>();
+
+        // Set Parameter
+        targetPosition = stayPosition;
+        targetRotation = stayRotation;
+        nowPosition = stayPosition;
+        nowRotation = stayRotation;
     }
 
     void Update()
@@ -36,8 +50,16 @@ public class CameraManager : MonoBehaviour
         // 正方向に入力を受け付けているとき
         if (inputVertical >= 0f)
         {
-            transform.position = Vector3.Lerp(stayPosition, peekPosition, inputVertical);
-            transform.rotation = Quaternion.Lerp(Quaternion.Euler(stayRotation), Quaternion.Euler(peekRotation), inputVertical);
+            targetPosition = Vector3.Lerp(stayPosition, peekPosition, inputVertical);
+            targetRotation = Vector3.Lerp(stayRotation, peekRotation, inputVertical);
         }
+
+        // 目標パラメータに向けて追跡
+        nowPosition += (targetPosition - nowPosition) * (chasePower * Time.deltaTime);
+        nowRotation += (targetRotation - nowRotation) * (chasePower * Time.deltaTime);
+
+        // 適用
+        transform.position = nowPosition;
+        transform.rotation = Quaternion.Euler(nowRotation);
     }
 }
