@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     // Flag
     private bool isStart;
     private bool isFinish;
+    private bool isStartAnimation;
 
     [Header("Game Parameter")]
     [SerializeField] private float maxTime;
@@ -17,11 +18,16 @@ public class GameManager : MonoBehaviour
     private int discoveryCount;
 
     [Header("Game UI")]
-    [SerializeField] private GameObject toStartObj;
+    [SerializeField] private GameObject beforeStartObj;
     [SerializeField] private GameObject finishObj;
     [SerializeField] private GameObject timeLimitObj;
     private Text timeLimitText;
     [SerializeField] private Text countText;
+
+    [Header("Animators")]
+    [SerializeField] private Animator cameraAnimator;
+    [SerializeField] private Animator readyAnimator;
+    [SerializeField] private Animator goAnimator;
 
     void Start()
     {
@@ -56,13 +62,15 @@ public class GameManager : MonoBehaviour
     }
     void GameStart()
     {
-        if (!isStart && inputManager.IsTrgger(inputManager.a))
+        if (!isStartAnimation && inputManager.IsTrgger(inputManager.a))
         {
             // UIの表示／非表示を切り替える
-            toStartObj.SetActive(false);
-            timeLimitObj.SetActive(true);
+            beforeStartObj.SetActive(false);
 
-            isStart = true;
+            // CameraのAnimationを動かす
+            cameraAnimator.SetTrigger("Start");
+
+            isStartAnimation = true;
         }
     }
     void TimeLimit()
@@ -111,4 +119,15 @@ public class GameManager : MonoBehaviour
     // Getter
     public bool GetIsStart() { return isStart; }
     public bool GetIsFinish() { return isFinish; }
+
+    // Setter
+    public void SetStartReadyAnimation() { readyAnimator.gameObject.SetActive(true); readyAnimator.SetTrigger("Start"); }
+    public void SetStartGoAnimation() { goAnimator.gameObject.SetActive(true); goAnimator.SetTrigger("Start"); }
+    public void SetIsStart(bool _isStart)
+    {
+        // UIの表示／非表示を切り替える
+        timeLimitObj.SetActive(true);
+
+        isStart = _isStart;
+    }
 }
