@@ -7,9 +7,9 @@ public class HumanMove : MonoBehaviour
     private NavMeshAgent agent;
 
     public List<Transform> waypoints = new();
-    public float moveInterval = 3f; // 何秒ごとに移動するか
+    public float moveInterval = 0f; // 何秒ごとに移動するか
     private int currentIndex;
-
+    Vector3 moveDirection = Vector3.zero;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -20,17 +20,25 @@ public class HumanMove : MonoBehaviour
             waypoints.Add(ground.transform);
         }
 
-        // 最初の目的地へ
+        //// 最初の目的地へ
         MoveToNextPoint();
 
         // 一定間隔で移動する処理を開始
         InvokeRepeating(nameof(MoveToNextPoint), moveInterval, moveInterval);
+        moveDirection  =new Vector3( Random.Range(-1,1),0, Random.Range(-1, 1));
     }
 
     private void Update()
     {
+        if (Physics.CheckSphere(transform.position, 0.2f, LayerMask.GetMask("road")))
+        {
+            Debug.Log("みちだa！！！！");
+            MoveToNextPoint();
+        }
+
         transform.LookAt(Camera.main.transform);
-        transform.rotation = Quaternion.Euler(-90, -90, transform.rotation.y);
+        transform.rotation = Quaternion.Euler(-90, -90, transform.rotation.z);
+        //transform.position += 3 * moveDirection * Time.deltaTime;
     }
 
     void MoveToNextPoint()

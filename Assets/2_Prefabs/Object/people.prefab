@@ -67,7 +67,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: db4c609044958ae4391fb91c8ae1bed7, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 11dae7421a61036409b584cff9cf46e5, type: 2}
+      objectReference: {fileID: 2100000, guid: d6532287a1031024e8530a0078985b41, type: 2}
     - target: {fileID: 919132149155446097, guid: db4c609044958ae4391fb91c8ae1bed7, type: 3}
       propertyPath: m_Name
       value: people
@@ -88,6 +88,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: db4c609044958ae4391fb91c8ae1bed7, type: 3}
       insertIndex: -1
       addedObject: {fileID: -4300497860112243232}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: db4c609044958ae4391fb91c8ae1bed7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -5971056447452085738}
   m_SourcePrefab: {fileID: 100100000, guid: db4c609044958ae4391fb91c8ae1bed7, type: 3}
 --- !u!1 &8734638933766605742 stripped
 GameObject:
@@ -104,14 +107,14 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.020837806
-  m_Speed: 0.0001
+  m_Speed: 1
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 1
+  m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
+  m_AutoBraking: 0
+  m_AutoRepath: 0
   m_Height: 0.024365937
   m_BaseOffset: 0.012182969
   m_WalkableMask: 8
@@ -129,7 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waypoints: []
-  moveInterval: 3
+  moveInterval: 1
 --- !u!136 &-7781771548550194170
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -180,3 +183,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &-5971056447452085738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8734638933766605742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d45db9bc12d4de147af70c3094be497e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materials:
+  - {fileID: 2100000, guid: 11dae7421a61036409b584cff9cf46e5, type: 2}
+  - {fileID: 2100000, guid: df4a7236001af444c89608ecee116170, type: 2}
+  - {fileID: 2100000, guid: 803025a0634e1124dafa74ce02c0aa97, type: 2}
+  - {fileID: 2100000, guid: 4c4f5819f99c54a479b2b243edcfe7b5, type: 2}
+  - {fileID: 2100000, guid: 48a300de85ce5a74faf492fa7f2e4c1a, type: 2}
+  - {fileID: 2100000, guid: 1fd55fcfc2529da49b7b01025d9fea98, type: 2}
+  - {fileID: 2100000, guid: d6532287a1031024e8530a0078985b41, type: 2}
+  material: {fileID: 0}
+  isRed: 0

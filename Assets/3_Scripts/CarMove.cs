@@ -6,34 +6,43 @@ public class CarMove : MonoBehaviour
 {
     private NavMeshAgent agent;
     private int currentIndex = 0;
-
-    public List<Transform> waypoints = new(); // ← List型に変更
+    public List<Transform> waypoints = new();
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = true;
 
-        // "road"タグの付いたオブジェクトのTransformをwaypointsに追加
         foreach (GameObject road in GameObject.FindGameObjectsWithTag("road"))
         {
             waypoints.Add(road.transform);
         }
 
-        // 最初の目的地を設定
         if (waypoints.Count > 0)
-        {
-            agent.SetDestination(waypoints[0].position);
-        }
+            MoveToNext();
     }
 
     void Update()
     {
         if (!agent.pathPending && agent.remainingDistance < 0.5f && waypoints.Count > 0)
         {
-            //currentIndex = (currentIndex + 1) % waypoints.Count;
-            currentIndex = Random.Range(0, waypoints.Count);
+            MoveToNext();
+        }
+        transform.rotation = Quaternion.Euler(-90, transform.rotation.y, transform.rotation.z);
 
-            agent.SetDestination(waypoints[currentIndex].position);
+    }
+
+    void MoveToNext()
+    {
+        currentIndex = Random.Range(0, waypoints.Count);
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(waypoints[currentIndex].position, out hit, 15.0f, agent.areaMask))
+        {
+            agent.SetDestination(hit.position);
+        }
+        else
+        {
+            Debug.LogWarning("NavMesh外のWaypointが選ばれました");
         }
     }
 }

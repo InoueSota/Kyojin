@@ -1,27 +1,36 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Obj_RandomColor : MonoBehaviour
 {
-    private Material material;
 
+    [SerializeField] List<Material> materials = new List<Material>();
+    public Material material;
+    public bool isRed;
+    int num;
     void Start()
     {
-        // Rendererからマテリアルを取得してインスタンス化（他オブジェクトと共有しないように）
-        Renderer renderer = GetComponent<Renderer>();
-        if (renderer != null)
+        num = Random.Range(0, 100);
+
+        //赤色にする
+        if (0 <= num && num <=100)
         {
-            material = renderer.material; // これで新しいインスタンスが生成される
+            Debug.Log("赤色");
+            material = materials[0];
+            isRed = true;
+        }
+        else
+        {
+            //赤色以外をランダムで
+            material = materials[Random.Range(1, materials.Count)];
         }
 
-        if (material != null)
-        {
-            material.color = Random.ColorHSV();
-        }
-
+        GetComponent<MeshRenderer>().material = material;
+       
     }
 
     void Update()
     {
-       
+
     }
 }
