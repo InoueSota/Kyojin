@@ -12,6 +12,17 @@ public class HumanMove : MonoBehaviour
     Vector3 moveDirection = Vector3.zero;
     void Start()
     {
+        // NavMesh 上にスナップさせる
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(transform.position, out hit, 10f, NavMesh.AllAreas))
+        {
+            transform.position = hit.position;
+        }
+        else
+        {
+            Debug.LogError("NavMesh上に初期位置が見つかりませんでした！");
+            return; // NavMesh外にいるので処理中断
+        }
         agent = GetComponent<NavMeshAgent>();
 
         // "ground"タグのオブジェクトを取得して追加
@@ -37,7 +48,7 @@ public class HumanMove : MonoBehaviour
         }
 
         transform.LookAt(Camera.main.transform);
-        transform.rotation = Quaternion.Euler(-90, -90, transform.rotation.z);
+        //transform.rotation = Quaternion.Euler(-90, -90, transform.rotation.z);
         //transform.position += 3 * moveDirection * Time.deltaTime;
     }
 

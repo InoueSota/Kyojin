@@ -10,35 +10,35 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 77aca047c1f9f7947a0a43085d0a7d94, type: 3}
       propertyPath: m_LocalScale.x
-      value: 26.700003
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 77aca047c1f9f7947a0a43085d0a7d94, type: 3}
       propertyPath: m_LocalScale.y
-      value: 26.700003
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 77aca047c1f9f7947a0a43085d0a7d94, type: 3}
       propertyPath: m_LocalScale.z
-      value: 26.700003
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 77aca047c1f9f7947a0a43085d0a7d94, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.89
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 77aca047c1f9f7947a0a43085d0a7d94, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.46
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 77aca047c1f9f7947a0a43085d0a7d94, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.89
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 77aca047c1f9f7947a0a43085d0a7d94, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071067
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 77aca047c1f9f7947a0a43085d0a7d94, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 77aca047c1f9f7947a0a43085d0a7d94, type: 3}
       propertyPath: m_LocalRotation.y
@@ -46,7 +46,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 77aca047c1f9f7947a0a43085d0a7d94, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 77aca047c1f9f7947a0a43085d0a7d94, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -101,4 +101,5 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 48a300de85ce5a74faf492fa7f2e4c1a, type: 2}
   - {fileID: 2100000, guid: 1fd55fcfc2529da49b7b01025d9fea98, type: 2}
   - {fileID: 2100000, guid: d6532287a1031024e8530a0078985b41, type: 2}
+  material: {fileID: 0}
   isRed: 0

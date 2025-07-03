@@ -48,7 +48,7 @@ public class FieldsScript : MonoBehaviour
                     if (Physics.CheckSphere(human.transform.position, 2.5f, obstacleLayer))
                     {
                         Debug.Log("みちだ！！！！");
-                        human.transform.position = new Vector3(Random.Range(-15, 15), 1, Random.Range(-15, 15));
+                        human.transform.position = new Vector3(Random.Range(-15, 15), 0.0f, Random.Range(-15, 15));
 
                     }
                     else
@@ -61,7 +61,7 @@ public class FieldsScript : MonoBehaviour
             else
             {
                 GameObject car = Instantiate(Car);
-                car.transform.position = Roads[Random.Range(0, Roads.Count)].transform.position + Vector3.up*5;
+                car.transform.position = Roads[Random.Range(0, Roads.Count)].transform.position + Vector3.up*0.1f;
                 car.transform.parent = GameObject.Find("Fields Characters").transform;
 
             }

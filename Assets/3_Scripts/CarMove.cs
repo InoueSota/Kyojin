@@ -10,6 +10,18 @@ public class CarMove : MonoBehaviour
 
     void Start()
     {
+        // NavMesh 上にスナップさせる
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(transform.position, out hit, 10f, NavMesh.AllAreas))
+        {
+            transform.position = hit.position;
+        }
+        else
+        {
+            Debug.LogError("NavMesh上に初期位置が見つかりませんでした！");
+            return; // NavMesh外にいるので処理中断
+        }
+
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = true;
 
@@ -28,7 +40,7 @@ public class CarMove : MonoBehaviour
         {
             MoveToNext();
         }
-        transform.rotation = Quaternion.Euler(-90, transform.rotation.y, transform.rotation.z);
+        
 
     }
 
