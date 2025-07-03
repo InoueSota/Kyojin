@@ -45,7 +45,7 @@ public class FieldsScript : MonoBehaviour
                 for (int retry = 0; retry < maxRetryCount; retry++)
                 {
                     //生成場所が道だったら
-                    if (Physics.CheckSphere(human.transform.position, 2.5f, obstacleLayer))
+                    if (Physics.CheckSphere(human.transform.position, 0.1f, obstacleLayer))
                     {
                         Debug.Log("みちだ！！！！");
                         human.transform.position = new Vector3(Random.Range(-15, 15), 0.0f, Random.Range(-15, 15));
@@ -67,22 +67,20 @@ public class FieldsScript : MonoBehaviour
             }
         }
 
-        foreach (Obj_RandomColor obj in GameObject.FindObjectsOfType<Obj_RandomColor>())
-        {
-            // obj.gameObject にアクセス可能
-            
-            if (obj.isRed)
-            {
-                //赤色だったらリストに追加
-                RedCount++;
-                RedList.Add(obj.gameObject);
-            }
-        }
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        foreach (Obj_RandomColor obj in GameObject.FindObjectsOfType<Obj_RandomColor>())
+        {
+            if (obj.isRed && !RedList.Contains(obj.gameObject))
+            {
+                Debug.Log("赤色でリストに未登録： " + obj.gameObject.name);
+                RedList.Add(obj.gameObject);
+            }
+        }
+        RedCount = RedList.Count;
     }
 }

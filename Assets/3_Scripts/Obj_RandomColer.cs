@@ -13,7 +13,7 @@ public class Obj_RandomColor : MonoBehaviour
         num = Random.Range(0, 100);
 
         //ê‘êFÇ…Ç∑ÇÈ
-        if (0 <= num && num <=100)
+        if (0 <= num && num <=30)
         {
             Debug.Log("ê‘êF");
             material = materials[0];

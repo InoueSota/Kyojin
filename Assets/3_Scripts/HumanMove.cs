@@ -46,7 +46,7 @@ public class HumanMove : MonoBehaviour
             Debug.Log("みちだa！！！！");
             MoveToNextPoint();
         }
-
+        agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
         transform.LookAt(Camera.main.transform);
         //transform.rotation = Quaternion.Euler(-90, -90, transform.rotation.z);
         //transform.position += 3 * moveDirection * Time.deltaTime;

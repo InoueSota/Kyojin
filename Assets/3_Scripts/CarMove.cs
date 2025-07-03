@@ -40,7 +40,8 @@ public class CarMove : MonoBehaviour
         {
             MoveToNext();
         }
-        
+        agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
+
 
     }
 
