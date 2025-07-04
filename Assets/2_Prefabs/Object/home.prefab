@@ -103,7 +103,6 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 4c4f5819f99c54a479b2b243edcfe7b5, type: 2}
   - {fileID: 2100000, guid: 48a300de85ce5a74faf492fa7f2e4c1a, type: 2}
   - {fileID: 2100000, guid: 1fd55fcfc2529da49b7b01025d9fea98, type: 2}
-  - {fileID: 2100000, guid: d6532287a1031024e8530a0078985b41, type: 2}
   material: {fileID: 0}
   isRed: 0
 --- !u!208 &8122581701182964528
