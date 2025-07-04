@@ -35,27 +35,29 @@ public class FieldsScript : MonoBehaviour
         }
 
         int createNum = Random.Range(RandomMinNum, RandomMaxNum);
-
+        Debug.Log(Grounds.Count);
         for (int i = 0; i < createNum; i++)
         {
             if (Random.Range(0, 10) <= 6)
             {
                 GameObject human = Instantiate(Human);
-                human.transform.position = new Vector3(Random.Range(-15,15),1, Random.Range(-15, 15));
-                for (int retry = 0; retry < maxRetryCount; retry++)
-                {
-                    //生成場所が道だったら
-                    if (Physics.CheckSphere(human.transform.position, 0.1f, obstacleLayer))
-                    {
-                        Debug.Log("みちだ！！！！");
-                        human.transform.position = new Vector3(Random.Range(-15, 15), 0.0f, Random.Range(-15, 15));
+                human.transform.position = Grounds[Random.Range(0, Grounds.Count)].transform.position;
+                Debug.Log(Random.Range(0, Grounds.Count));
+                //for (int retry = 0; retry < maxRetryCount; retry++)
+                //{
+                //    //生成場所が道だったら
+                //    if (Physics.CheckSphere(human.transform.position, 0.1f, obstacleLayer))
+                //    {
+                //        Debug.Log("みちだ！！！！");
+                //        //human.transform.position = new Vector3(Random.Range(-15, 15), 0.0f, Random.Range(-15, 15));
+                //        human.transform.position = Grounds[Random.Range(0, Grounds.Count)].transform.position;
 
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
+                //    }
+                //    else
+                //    {
+                //        break;
+                //    }
+                //}
                 human.transform.parent = GameObject.Find("Fields Characters").transform;
             }
             else
@@ -77,7 +79,7 @@ public class FieldsScript : MonoBehaviour
         {
             if (obj.isRed && !RedList.Contains(obj.gameObject))
             {
-                Debug.Log("赤色でリストに未登録： " + obj.gameObject.name);
+                //Debug.Log("赤色でリストに未登録： " + obj.gameObject.name);
                 RedList.Add(obj.gameObject);
             }
         }
