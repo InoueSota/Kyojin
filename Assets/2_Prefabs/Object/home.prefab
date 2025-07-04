@@ -22,7 +22,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 85ab5b6a05baf4a44a229cd5ef846852, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.5
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 85ab5b6a05baf4a44a229cd5ef846852, type: 3}
       propertyPath: m_LocalPosition.y
@@ -30,7 +30,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 85ab5b6a05baf4a44a229cd5ef846852, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.5
+      value: -8.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 85ab5b6a05baf4a44a229cd5ef846852, type: 3}
       propertyPath: m_LocalRotation.w
@@ -75,6 +75,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 85ab5b6a05baf4a44a229cd5ef846852, type: 3}
       insertIndex: -1
       addedObject: {fileID: 793372883383191979}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 85ab5b6a05baf4a44a229cd5ef846852, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8122581701182964528}
   m_SourcePrefab: {fileID: 100100000, guid: 85ab5b6a05baf4a44a229cd5ef846852, type: 3}
 --- !u!1 &5866320178080660723 stripped
 GameObject:
@@ -101,4 +104,21 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 48a300de85ce5a74faf492fa7f2e4c1a, type: 2}
   - {fileID: 2100000, guid: 1fd55fcfc2529da49b7b01025d9fea98, type: 2}
   - {fileID: 2100000, guid: d6532287a1031024e8530a0078985b41, type: 2}
+  material: {fileID: 0}
   isRed: 0
+--- !u!208 &8122581701182964528
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5866320178080660723}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.05, y: 0.05, z: 0.05}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5

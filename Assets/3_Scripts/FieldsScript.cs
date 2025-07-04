@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FieldsScript : MonoBehaviour
 {
@@ -28,6 +29,8 @@ public class FieldsScript : MonoBehaviour
         foreach (GameObject ground in GameObject.FindGameObjectsWithTag("ground"))
         {
             Grounds.Add(ground);
+            ground.transform.parent = GameObject.Find("FieldsGround").transform;
+
         }
         foreach (GameObject road in GameObject.FindGameObjectsWithTag("road"))
         {
@@ -36,40 +39,36 @@ public class FieldsScript : MonoBehaviour
 
         int createNum = Random.Range(RandomMinNum, RandomMaxNum);
         Debug.Log(Grounds.Count);
-        for (int i = 0; i < createNum; i++)
+        List<GameObject> availableGrounds = new List<GameObject>(Grounds);
+        List<GameObject> availableRoad = new List<GameObject>(Roads);
+
+        for (int i = 0; i < createNum && availableGrounds.Count > 0; i++)
         {
             if (Random.Range(0, 10) <= 6)
             {
-                GameObject human = Instantiate(Human);
-                human.transform.position = Grounds[Random.Range(0, Grounds.Count)].transform.position;
-                Debug.Log(Random.Range(0, Grounds.Count));
-                //for (int retry = 0; retry < maxRetryCount; retry++)
-                //{
-                //    //生成場所が道だったら
-                //    if (Physics.CheckSphere(human.transform.position, 0.1f, obstacleLayer))
-                //    {
-                //        Debug.Log("みちだ！！！！");
-                //        //human.transform.position = new Vector3(Random.Range(-15, 15), 0.0f, Random.Range(-15, 15));
-                //        human.transform.position = Grounds[Random.Range(0, Grounds.Count)].transform.position;
+                int index = Random.Range(0, availableGrounds.Count);
+                Vector3 spawnPos = availableGrounds[index].transform.position;
+                availableGrounds.RemoveAt(index); // 重複防止
 
-                //    }
-                //    else
-                //    {
-                //        break;
-                //    }
-                //}
+                GameObject human = Instantiate(Human, spawnPos, Quaternion.identity);
                 human.transform.parent = GameObject.Find("Fields Characters").transform;
             }
             else
             {
-                GameObject car = Instantiate(Car);
-                car.transform.position = Roads[Random.Range(0, Roads.Count)].transform.position + Vector3.up*0.1f;
-                car.transform.parent = GameObject.Find("Fields Characters").transform;
+                int index = Random.Range(0, availableRoad.Count);
+                Vector3 spwnPos = availableRoad[index].transform.position;
+                availableRoad.RemoveAt(index);
 
+                GameObject car = Instantiate(Car, spwnPos, Quaternion.identity);
+
+                car.transform.parent = GameObject.Find("Fields Characters").transform;
             }
         }
 
-       
+
+        //米くする
+        
+
     }
 
     // Update is called once per frame
