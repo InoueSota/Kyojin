@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class CameraManager : MonoBehaviour
@@ -79,6 +80,6 @@ public class CameraManager : MonoBehaviour
     // Setter
     public void ShakeStart()
     {
-        
+        transform.parent.DOShakePosition(0.3f, 0.3f, 15, 1, false, true);
     }
 }
