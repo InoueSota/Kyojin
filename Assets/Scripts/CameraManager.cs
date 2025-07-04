@@ -75,4 +75,10 @@ public class CameraManager : MonoBehaviour
         transform.position = nowPosition;
         transform.rotation = Quaternion.Euler(nowRotation);
     }
+
+    // Setter
+    public void ShakeStart()
+    {
+        
+    }
 }
