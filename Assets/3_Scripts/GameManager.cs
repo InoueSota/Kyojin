@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     private bool isFinishEndAnimation;
     private bool isFinishDarkAnimation;
     private bool isStartsToLightenUp;
+    private bool isStartResult;
 
     [Header("Game Parameter")]
     [SerializeField] private float maxTime;
@@ -24,6 +25,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float finishIntervalTime;
     [SerializeField] private float finishDarkIntervalTime;
     private float finishIntervalTimer;
+
+    [Header("Result Parameter")]
+    [SerializeField] private FieldsScript fieldsScript;
+    [SerializeField] private float startResultIntervalTime;
+    private float startResultIntervalTimer;
 
     [Header("Game UI")]
     [SerializeField] private GameObject beforeStartObj;
@@ -72,6 +78,8 @@ public class GameManager : MonoBehaviour
         GameStart();
         // ゲーム終了処理
         Finish();
+        // リザルト処理
+        Result();
     }
     void GameStart()
     {
@@ -151,8 +159,27 @@ public class GameManager : MonoBehaviour
                 // Animation開始
                 darkBackgroundAnimator.SetTrigger("StartFadeOut");
 
+                // インターバルの設定
+                startResultIntervalTimer = startResultIntervalTime;
+
                 // Animationを一度でも開始したらフラグをtrueにする
                 isStartsToLightenUp = true;
+            }
+        }
+    }
+    void Result()
+    {
+        if (isStartsToLightenUp && !isStartResult)
+        {
+            // インターバルの更新
+            startResultIntervalTimer -= Time.deltaTime;
+
+            if (startResultIntervalTimer <= 0f)
+            {
+                // FieldsScriptのカウントを開始する
+                fieldsScript.SetCanCount(true);
+
+                isStartResult = true;
             }
         }
     }

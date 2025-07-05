@@ -3360,6 +3360,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1506135924}
     - target: {fileID: 8999146287008608985, guid: 144ac1b190d48564f8194b99d63b8759, type: 3}
+      propertyPath: fieldsScript
+      value: 
+      objectReference: {fileID: 2047147412}
+    - target: {fileID: 8999146287008608985, guid: 144ac1b190d48564f8194b99d63b8759, type: 3}
       propertyPath: timeLimitObj
       value: 
       objectReference: {fileID: 1506135922}
@@ -20473,6 +20477,8 @@ MonoBehaviour:
   RedList: []
   Grounds: []
   Roads: []
+  brightRed: {fileID: 2100000, guid: 69a41b06f8a614144a664713fd5127c9, type: 2}
+  countIntervalTime: 0.8
 --- !u!1001 &2048746252
 PrefabInstance:
   m_ObjectHideFlags: 0

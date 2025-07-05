@@ -48,11 +48,14 @@ MonoBehaviour:
   maxTime: 30
   finishIntervalTime: 3
   finishDarkIntervalTime: 3.5
+  fieldsScript: {fileID: 0}
+  startResultIntervalTime: 2
   beforeStartObj: {fileID: 0}
   finishObj: {fileID: 0}
   timeLimitObj: {fileID: 0}
   countText: {fileID: 0}
   afterFinishTextsObj: {fileID: 0}
+  resultObj: {fileID: 0}
   cameraAnimator: {fileID: 0}
   readyAnimator: {fileID: 0}
   goAnimator: {fileID: 0}

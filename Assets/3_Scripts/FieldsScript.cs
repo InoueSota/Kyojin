@@ -22,6 +22,13 @@ public class FieldsScript : MonoBehaviour
     [SerializeField] List<GameObject> Grounds = new List<GameObject>();
     [SerializeField] List<GameObject> Roads = new List<GameObject>();
 
+    [Header("リザルト関係")]
+    [SerializeField] private Material brightRed;
+    [SerializeField] private float countIntervalTime;
+    private float countIntervalTimer;
+    private int countNum;
+    private bool canCount;
+
   
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -83,5 +90,31 @@ public class FieldsScript : MonoBehaviour
             }
         }
         RedCount = RedList.Count;
+
+        Result();
     }
+
+    void Result()
+    {
+        if (canCount)
+        {
+            // インターバルの更新
+            countIntervalTimer -= Time.deltaTime;
+
+            if (countIntervalTimer <= 0f && countNum < RedList.Count)
+            {
+                // カウントに対応したGameObjectのMaterialを変更する
+                RedList[countNum].GetComponent<MeshRenderer>().material = brightRed;
+
+                // カウントを次に進める
+                countNum++;
+
+                // インターバルの再設定
+                countIntervalTimer = countIntervalTime;
+            }
+        }
+    }
+
+    // Setter
+    public void SetCanCount(bool _canCount) { canCount = _canCount; }
 }
