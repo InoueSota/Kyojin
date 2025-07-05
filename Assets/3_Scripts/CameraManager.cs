@@ -18,6 +18,13 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private Vector3 stayRotation;
     [SerializeField] private Vector3 peekRotation;
 
+    [Header("Result Camera")]
+    [SerializeField] private Vector3 resultCameraPosition;
+    [SerializeField] private Vector3 resultCameraRotation;
+    [SerializeField] private Vector3 resultTargetCameraRotation;
+    [SerializeField] private float resultIntervalTime;
+    private float resultIntervalTimer;
+
     [Header("Chase Parameter")]
     [SerializeField] private float chasePower;
     private Vector3 targetPosition;
@@ -49,6 +56,13 @@ public class CameraManager : MonoBehaviour
             // 覗き
             Peek();
         }
+
+        // ゲーム終了後の処理
+        if (gameManager.GetIsFinish() && gameManager.GetIsFinishDarkAnimation())
+        {
+            Result();
+        }
+
         // Cameraの移動が終了したあとの処理
         if (gameManager.GetIsFinishAnimation())
         {
@@ -83,6 +97,21 @@ public class CameraManager : MonoBehaviour
         // 適用
         transform.position = nowPosition;
         transform.rotation = Quaternion.Euler(nowRotation);
+    }
+    void Result()
+    {
+        // インターバルの更新
+        resultIntervalTimer += Time.deltaTime;
+
+        if (resultIntervalTimer >= resultIntervalTime)
+        {
+            targetRotation = resultTargetCameraRotation;
+        }
+        else
+        {
+            targetPosition = resultCameraPosition;
+            targetRotation = resultCameraRotation;
+        }
     }
 
     // Setter

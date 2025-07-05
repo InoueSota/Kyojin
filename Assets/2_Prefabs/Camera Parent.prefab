@@ -191,6 +191,10 @@ MonoBehaviour:
   crouchRotation: {x: -10, y: 0, z: 0}
   stayRotation: {x: 18, y: 0, z: 0}
   peekRotation: {x: 70, y: 0, z: 0}
+  resultCameraPosition: {x: 0, y: 35, z: 2}
+  resultCameraRotation: {x: 90, y: 0, z: 0}
+  resultTargetCameraRotation: {x: -35, y: 0, z: 0}
+  resultIntervalTime: 6
   chasePower: 5
 --- !u!114 &6381530606053644935
 MonoBehaviour:

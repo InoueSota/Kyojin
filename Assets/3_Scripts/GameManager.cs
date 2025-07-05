@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     private bool isFinishAnimation;
     private bool isFinishEndAnimation;
     private bool isFinishDarkAnimation;
+    private bool isStartsToLightenUp;
 
     [Header("Game Parameter")]
     [SerializeField] private float maxTime;
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour
     private Text timeLimitText;
     [SerializeField] private Text countText;
     [SerializeField] private GameObject afterFinishTextsObj;
+    [SerializeField] private GameObject resultObj;
 
     [Header("Animators")]
     [SerializeField] private Animator cameraAnimator;
@@ -133,11 +135,24 @@ public class GameManager : MonoBehaviour
             // 暗闇のインターバルを満たしたら
             if (finishIntervalTimer <= 0f && isFinishEndAnimation && !isFinishDarkAnimation)
             {
+                // UIの表示／非表示を切り替える
+                resultObj.SetActive(true);
+
                 // Animation開始
                 finishFramesAnimator.SetTrigger("Start");
 
                 // Animationを一度でも開始したらフラグをtrueにする
                 isFinishDarkAnimation = true;
+            }
+
+            // 明転
+            if (finishIntervalTimer <= -2f && isFinishDarkAnimation && !isStartsToLightenUp)
+            {
+                // Animation開始
+                darkBackgroundAnimator.SetTrigger("StartFadeOut");
+
+                // Animationを一度でも開始したらフラグをtrueにする
+                isStartsToLightenUp = true;
             }
         }
     }
@@ -163,6 +178,7 @@ public class GameManager : MonoBehaviour
     public bool GetIsStart() { return isStart; }
     public bool GetIsFinish() { return isFinish; }
     public bool GetIsFinishAnimation() {  return isFinishAnimation; }
+    public bool GetIsFinishDarkAnimation() {  return isFinishDarkAnimation; }
 
     // Setter
     public void SetStartReadyAnimation() { isFinishAnimation = true; readyAnimator.gameObject.SetActive(true); readyAnimator.SetTrigger("Start"); }
