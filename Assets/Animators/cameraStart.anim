@@ -44,6 +44,15 @@ AnimationClip:
         weightedMode: 0
         inWeight: {x: 0.6316726, y: 0.47294855, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+      - serializedVersion: 3
+        time: 3.0166667
+        value: {x: 18, y: 0, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -118,20 +127,29 @@ AnimationClip:
       - serializedVersion: 3
         time: 2
         value: {x: 12, y: 1, z: -35.434227}
-        inSlope: {x: -0.029822176, y: 0.038151655, z: 7.2678223}
-        outSlope: {x: -0.029822176, y: 0.038151655, z: 7.2678223}
+        inSlope: {x: -12.098697, y: 23.081161, z: 7.2678223}
+        outSlope: {x: -12.098697, y: 23.081161, z: 7.2678223}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 1}
+        outWeight: {x: 1, y: 0.20919967, z: 1}
       - serializedVersion: 3
         time: 3
         value: {x: 0, y: 15, z: -28}
-        inSlope: {x: -3.9754767, y: 4.924085, z: 7.4616647}
-        outSlope: {x: -3.9754767, y: 4.924085, z: 7.4616647}
+        inSlope: {x: -11.746118, y: 1.3656712, z: 7.4616647}
+        outSlope: {x: -11.746118, y: 1.3656712, z: 7.4616647}
         tangentMode: 0
         weightedMode: 0
-        inWeight: {x: 0.9964922, y: 0.9964922, z: 0.9964922}
+        inWeight: {x: 1, y: 0.18828988, z: 0.9964922}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+      - serializedVersion: 3
+        time: 3.0166667
+        value: {x: 0, y: 15, z: -28}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -171,7 +189,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 3
+    m_StopTime: 3.0166667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -257,20 +275,29 @@ AnimationClip:
       - serializedVersion: 3
         time: 2
         value: 12
-        inSlope: -0.029822176
-        outSlope: -0.029822176
+        inSlope: -12.098697
+        outSlope: -12.098697
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.33333334
+        outWeight: 1
       - serializedVersion: 3
         time: 3
         value: 0
-        inSlope: -3.9754767
-        outSlope: -3.9754767
+        inSlope: -11.746118
+        outSlope: -11.746118
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.9964922
+        inWeight: 1
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 3.0166667
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
         outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -350,20 +377,29 @@ AnimationClip:
       - serializedVersion: 3
         time: 2
         value: 1
-        inSlope: 0.038151655
-        outSlope: 0.038151655
+        inSlope: 23.081161
+        outSlope: 23.081161
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.33333334
+        outWeight: 0.20919967
       - serializedVersion: 3
         time: 3
         value: 15
-        inSlope: 4.924085
-        outSlope: 4.924085
+        inSlope: 1.3656712
+        outSlope: 1.3656712
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.9964922
+        inWeight: 0.18828988
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 3.0166667
+        value: 15
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
         outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -458,6 +494,15 @@ AnimationClip:
         weightedMode: 0
         inWeight: 0.9964922
         outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 3.0166667
+        value: -28
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -496,6 +541,15 @@ AnimationClip:
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.6316726
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 3.0166667
+        value: 18
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
         outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -536,6 +590,15 @@ AnimationClip:
         weightedMode: 0
         inWeight: 0.47294855
         outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 3.0166667
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -559,6 +622,15 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 3
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 3.0166667
         value: 0
         inSlope: 0
         outSlope: 0
@@ -635,7 +707,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 3
+  - time: 3.0166667
     functionName: SetStartReadyAnimation
     data: 
     objectReferenceParameter: {fileID: 0}

@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -11,11 +10,19 @@ public class GameManager : MonoBehaviour
     private bool isStart;
     private bool isFinish;
     private bool isStartAnimation;
+    private bool isFinishAnimation;
+    private bool isFinishEndAnimation;
+    private bool isFinishDarkAnimation;
 
     [Header("Game Parameter")]
     [SerializeField] private float maxTime;
     private float timeLimit;
     private int discoveryCount;
+
+    [Header("Finish Parameter")]
+    [SerializeField] private float finishIntervalTime;
+    [SerializeField] private float finishDarkIntervalTime;
+    private float finishIntervalTimer;
 
     [Header("Game UI")]
     [SerializeField] private GameObject beforeStartObj;
@@ -23,11 +30,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject timeLimitObj;
     private Text timeLimitText;
     [SerializeField] private Text countText;
+    [SerializeField] private GameObject afterFinishTextsObj;
 
     [Header("Animators")]
     [SerializeField] private Animator cameraAnimator;
     [SerializeField] private Animator readyAnimator;
     [SerializeField] private Animator goAnimator;
+    [SerializeField] private Animator finishesAnimator;
+    [SerializeField] private Animator darkBackgroundAnimator;
+    [SerializeField] private Animator finishFramesAnimator;
 
     void Start()
     {
@@ -90,12 +101,44 @@ public class GameManager : MonoBehaviour
             timeLimitObj.SetActive(false);
             finishObj.SetActive(true);
 
+            // 遷移するまでのインターバル計測開始
+            finishIntervalTimer = finishIntervalTime;
+
+            isFinishEndAnimation = false;
             isFinish = true;
         }
 
-        if (isFinish && inputManager.IsTrgger(inputManager.a))
+        if (isFinish)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            // インターバルの更新
+            finishIntervalTimer -= Time.deltaTime;
+
+            // インターバルを満たしたら
+            if (finishIntervalTimer <= 0f && !isFinishEndAnimation)
+            {
+                // Animation開始
+                finishesAnimator.SetTrigger("Start");
+                darkBackgroundAnimator.SetTrigger("Start");
+
+                // UIの表示／非表示を切り替える
+                afterFinishTextsObj.SetActive(true);
+
+                // TimerをResetする
+                finishIntervalTimer = finishDarkIntervalTime;
+
+                // Animationを一度でも開始したらフラグをtrueにする
+                isFinishEndAnimation = true;
+            }
+
+            // 暗闇のインターバルを満たしたら
+            if (finishIntervalTimer <= 0f && isFinishEndAnimation && !isFinishDarkAnimation)
+            {
+                // Animation開始
+                finishFramesAnimator.SetTrigger("Start");
+
+                // Animationを一度でも開始したらフラグをtrueにする
+                isFinishDarkAnimation = true;
+            }
         }
     }
     void Count()
@@ -119,9 +162,10 @@ public class GameManager : MonoBehaviour
     // Getter
     public bool GetIsStart() { return isStart; }
     public bool GetIsFinish() { return isFinish; }
+    public bool GetIsFinishAnimation() {  return isFinishAnimation; }
 
     // Setter
-    public void SetStartReadyAnimation() { readyAnimator.gameObject.SetActive(true); readyAnimator.SetTrigger("Start"); }
+    public void SetStartReadyAnimation() { isFinishAnimation = true; readyAnimator.gameObject.SetActive(true); readyAnimator.SetTrigger("Start"); }
     public void SetStartGoAnimation() { goAnimator.gameObject.SetActive(true); goAnimator.SetTrigger("Start"); }
     public void SetIsStart(bool _isStart)
     {

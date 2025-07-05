@@ -46,10 +46,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxTime: 30
-  toStartObj: {fileID: 0}
+  finishIntervalTime: 3
+  finishDarkIntervalTime: 3.5
+  beforeStartObj: {fileID: 0}
   finishObj: {fileID: 0}
   timeLimitObj: {fileID: 0}
   countText: {fileID: 0}
+  afterFinishTextsObj: {fileID: 0}
+  cameraAnimator: {fileID: 0}
+  readyAnimator: {fileID: 0}
+  goAnimator: {fileID: 0}
+  finishesAnimator: {fileID: 0}
+  darkBackgroundAnimator: {fileID: 0}
+  finishFramesAnimator: {fileID: 0}
 --- !u!114 &5759089661822000022
 MonoBehaviour:
   m_ObjectHideFlags: 0

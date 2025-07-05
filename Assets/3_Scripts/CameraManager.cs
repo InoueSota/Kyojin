@@ -34,8 +34,8 @@ public class CameraManager : MonoBehaviour
         // Set Parameter
         targetPosition = stayPosition;
         targetRotation = stayRotation;
-        nowPosition = stayPosition;
-        nowRotation = stayRotation;
+        nowPosition = new(0.2519214f, 14.96579f, -28.43637f);
+        nowRotation = new(16.265f, -0.307f, -1.042f);
     }
 
     void Update()
@@ -48,6 +48,12 @@ public class CameraManager : MonoBehaviour
         {
             // 覗き
             Peek();
+        }
+        // Cameraの移動が終了したあとの処理
+        if (gameManager.GetIsFinishAnimation())
+        {
+            // 目標座標／目標角度に向けて動く
+            Chase();
         }
     }
 
@@ -67,7 +73,9 @@ public class CameraManager : MonoBehaviour
             targetPosition = Vector3.Lerp(stayPosition, crouchPosition, Mathf.Abs(inputVertical));
             targetRotation = Vector3.Lerp(stayRotation, crouchRotation, Mathf.Abs(inputVertical));
         }
-
+    }
+    void Chase()
+    {
         // 目標パラメータに向けて追跡
         nowPosition += (targetPosition - nowPosition) * (chasePower * Time.deltaTime);
         nowRotation += (targetRotation - nowRotation) * (chasePower * Time.deltaTime);

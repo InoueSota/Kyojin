@@ -755,7 +755,7 @@ RectTransform:
   m_GameObject: {fileID: 1878883074}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 353074484}
@@ -787,7 +787,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 905d8bb0609b9bc469aa0ecb219113f9, type: 3}
-    m_FontSize: 160
+    m_FontSize: 128
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -798,7 +798,11 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\u30CE\u30C3\u30DD\u30D5\u30A1\u30A6\u30F3\u30C9"
+  m_Text: 'count
+
+    the
+
+    reds'
 --- !u!222 &1878883077
 CanvasRenderer:
   m_ObjectHideFlags: 0
