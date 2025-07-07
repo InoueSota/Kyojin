@@ -203,6 +203,7 @@ public class GameManager : MonoBehaviour
 
     // Getter
     public bool GetIsStart() { return isStart; }
+    public bool GetIsStartAnimation() { return isStartAnimation; }
     public bool GetIsFinish() { return isFinish; }
     public bool GetIsFinishAnimation() {  return isFinishAnimation; }
     public bool GetIsFinishDarkAnimation() {  return isFinishDarkAnimation; }
