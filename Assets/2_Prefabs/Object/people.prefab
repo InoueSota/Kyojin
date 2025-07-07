@@ -90,6 +90,9 @@ PrefabInstance:
       addedObject: {fileID: -5971056447452085738}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: db4c609044958ae4391fb91c8ae1bed7, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1072248772872491839}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: db4c609044958ae4391fb91c8ae1bed7, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 287958053292869109}
   m_SourcePrefab: {fileID: 100100000, guid: db4c609044958ae4391fb91c8ae1bed7, type: 3}
 --- !u!1 &8734638933766605742 stripped
@@ -181,6 +184,25 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 1fd55fcfc2529da49b7b01025d9fea98, type: 2}
   material: {fileID: 0}
   isRed: 0
+--- !u!114 &1072248772872491839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8734638933766605742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23e55bc3c9ed6c443b88c89a3da61708, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalRandomRange: 0
+  normalRandomMin: 0
+  normalRandomMax: 0
+  doubtRandomRange: 0
+  doubtRandomMin: 0
+  doubtRandomMax: 0
+  findTime: 0
 --- !u!136 &287958053292869109
 CapsuleCollider:
   m_ObjectHideFlags: 0

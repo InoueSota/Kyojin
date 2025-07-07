@@ -3364,6 +3364,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2047147412}
     - target: {fileID: 8999146287008608985, guid: 144ac1b190d48564f8194b99d63b8759, type: 3}
+      propertyPath: redCountText
+      value: 
+      objectReference: {fileID: 2138502588}
+    - target: {fileID: 8999146287008608985, guid: 144ac1b190d48564f8194b99d63b8759, type: 3}
       propertyPath: timeLimitObj
       value: 
       objectReference: {fileID: 1506135922}
@@ -3379,6 +3383,10 @@ PrefabInstance:
       propertyPath: cameraAnimator
       value: 
       objectReference: {fileID: 1698357677}
+    - target: {fileID: 8999146287008608985, guid: 144ac1b190d48564f8194b99d63b8759, type: 3}
+      propertyPath: backRedCountText
+      value: 
+      objectReference: {fileID: 2138502589}
     - target: {fileID: 8999146287008608985, guid: 144ac1b190d48564f8194b99d63b8759, type: 3}
       propertyPath: finishesAnimator
       value: 
@@ -20477,6 +20485,7 @@ MonoBehaviour:
   RedList: []
   Grounds: []
   Roads: []
+  gameManager: {fileID: 1819164697}
   brightRed: {fileID: 2100000, guid: 69a41b06f8a614144a664713fd5127c9, type: 2}
   countIntervalTime: 0.8
 --- !u!1001 &2048746252
@@ -21216,6 +21225,28 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 3935512456566402432, guid: bd694d8992783054da7248207df71aa4, type: 3}
   m_PrefabInstance: {fileID: 1506135921}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2138502588 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3709389679860748676, guid: bd694d8992783054da7248207df71aa4, type: 3}
+  m_PrefabInstance: {fileID: 1506135921}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2138502589 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1090913768049851503, guid: bd694d8992783054da7248207df71aa4, type: 3}
+  m_PrefabInstance: {fileID: 1506135921}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2138754581 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6950433018024496380, guid: 05e5c2f529f0fa34fa9ba45ce3a827fc, type: 3}
