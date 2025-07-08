@@ -8,6 +8,9 @@ public class Obj_RandomColor : MonoBehaviour
     public Material material;
     public bool isRed;
     int num;
+
+    float coolTime;
+    int randomNum;
     void Start()
     {
         num = Random.Range(0, 100);
@@ -31,6 +34,11 @@ public class Obj_RandomColor : MonoBehaviour
 
     void Update()
     {
+        if (randomNum <= 5)
+        {
+            coolTime = 5.0f;
+        }
+
 
     }
 }
