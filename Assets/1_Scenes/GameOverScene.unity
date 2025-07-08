@@ -177,7 +177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   darkAnimator: {fileID: 165012214}
-  pushAIntervalTime: 3
+  pushAIntervalTime: 1
 --- !u!1 &165012210
 GameObject:
   m_ObjectHideFlags: 0
