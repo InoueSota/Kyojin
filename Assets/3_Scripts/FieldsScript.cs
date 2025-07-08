@@ -44,6 +44,8 @@ public class FieldsScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        musicAudioSource = GameObject.Find("GameManager").GetComponent<AudioSource>();
+
         foreach (GameObject ground in GameObject.FindGameObjectsWithTag("ground"))
         {
             Grounds.Add(ground);
