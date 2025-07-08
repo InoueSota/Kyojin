@@ -2969,6 +2969,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1506135926}
     - target: {fileID: 8999146287008608985, guid: 144ac1b190d48564f8194b99d63b8759, type: 3}
+      propertyPath: gameOverDarkAnimator
+      value: 
+      objectReference: {fileID: 759274992}
+    - target: {fileID: 8999146287008608985, guid: 144ac1b190d48564f8194b99d63b8759, type: 3}
       propertyPath: darkBackgroundAnimator
       value: 
       objectReference: {fileID: 2130971382}
@@ -7143,6 +7147,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 993919850546736209, guid: 369cb0575eb8c6c45917343094521988, type: 3}
   m_PrefabInstance: {fileID: 750758855}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &759274992 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3230970863806935784, guid: bd694d8992783054da7248207df71aa4, type: 3}
+  m_PrefabInstance: {fileID: 1506135921}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &760000902
 PrefabInstance:

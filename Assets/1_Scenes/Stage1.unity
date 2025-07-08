@@ -3442,6 +3442,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1506135924}
     - target: {fileID: 8999146287008608985, guid: 144ac1b190d48564f8194b99d63b8759, type: 3}
+      propertyPath: gameOverObj
+      value: 
+      objectReference: {fileID: 1492515407}
+    - target: {fileID: 8999146287008608985, guid: 144ac1b190d48564f8194b99d63b8759, type: 3}
       propertyPath: fieldsScript
       value: 
       objectReference: {fileID: 2047147412}
@@ -3477,6 +3481,10 @@ PrefabInstance:
       propertyPath: finishFramesAnimator
       value: 
       objectReference: {fileID: 1506135926}
+    - target: {fileID: 8999146287008608985, guid: 144ac1b190d48564f8194b99d63b8759, type: 3}
+      propertyPath: gameOverDarkAnimator
+      value: 
+      objectReference: {fileID: 1492515406}
     - target: {fileID: 8999146287008608985, guid: 144ac1b190d48564f8194b99d63b8759, type: 3}
       propertyPath: darkBackgroundAnimator
       value: 
@@ -15281,6 +15289,16 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 6950433018024496380, guid: 05e5c2f529f0fa34fa9ba45ce3a827fc, type: 3}
   m_PrefabInstance: {fileID: 1368431884}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1492515406 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3230970863806935784, guid: bd694d8992783054da7248207df71aa4, type: 3}
+  m_PrefabInstance: {fileID: 1506135921}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1492515407 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1623874040380217592, guid: bd694d8992783054da7248207df71aa4, type: 3}
+  m_PrefabInstance: {fileID: 1506135921}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1495234000 stripped
 Transform:

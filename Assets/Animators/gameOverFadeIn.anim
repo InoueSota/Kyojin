@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: darkFadeIn
+  m_Name: gameOverFadeIn
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -24,12 +24,12 @@ AnimationClip:
       - serializedVersion: 3
         time: 0
         value: 0
-        inSlope: 5.825607
-        outSlope: 5.825607
+        inSlope: 5.280179
+        outSlope: 5.280179
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.24479035
+        outWeight: 0.39415535
       - serializedVersion: 3
         time: 0.33333334
         value: 1
@@ -93,12 +93,12 @@ AnimationClip:
       - serializedVersion: 3
         time: 0
         value: 0
-        inSlope: 5.825607
-        outSlope: 5.825607
+        inSlope: 5.280179
+        outSlope: 5.280179
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.24479035
+        outWeight: 0.39415535
       - serializedVersion: 3
         time: 0.33333334
         value: 1

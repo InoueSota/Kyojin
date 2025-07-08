@@ -109,10 +109,10 @@ GameObject:
   - component: {fileID: 3522926529239384124}
   - component: {fileID: 1503078286640823435}
   - component: {fileID: 6845667670368273733}
-  - component: {fileID: 1875864477890064227}
   - component: {fileID: 1270260342209062673}
+  - component: {fileID: 3230970863806935784}
   m_Layer: 5
-  m_Name: Dark Background
+  m_Name: Game Over Dark Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -175,28 +175,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!95 &1875864477890064227
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 322340138794564591}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: fc01535db9ddf994bacad706ff6f47e5, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &1270260342209062673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,6 +188,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+  nextSceneName: GameOverScene
+--- !u!95 &3230970863806935784
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322340138794564591}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 40fa3020a9640e14aa007091b616b7fd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &890065864652016124
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,6 +402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+  nextSceneName: 
 --- !u!1 &1623874040380217592
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,10 +475,10 @@ RectTransform:
   - {fileID: 345773858444868993}
   - {fileID: 7376187044082531001}
   - {fileID: 4353862190436008652}
-  - {fileID: 9002697697190334857}
   - {fileID: 8604142376748307244}
   - {fileID: 7980464365910680927}
   - {fileID: 7434743363658772665}
+  - {fileID: 9002697697190334857}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -663,6 +665,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+  nextSceneName: 
 --- !u!1 &2636925640484025619
 GameObject:
   m_ObjectHideFlags: 0
@@ -779,6 +782,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+  nextSceneName: 
 --- !u!1 &2644938544920003616
 GameObject:
   m_ObjectHideFlags: 0
@@ -1076,6 +1080,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+  nextSceneName: 
 --- !u!1 &3570217218333776725
 GameObject:
   m_ObjectHideFlags: 0
@@ -1150,6 +1155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+  nextSceneName: 
 --- !u!1 &3755799422249526221
 GameObject:
   m_ObjectHideFlags: 0
@@ -1458,6 +1464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+  nextSceneName: 
 --- !u!1 &4252737583335562382
 GameObject:
   m_ObjectHideFlags: 0
@@ -1533,6 +1540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+  nextSceneName: 
 --- !u!1 &4332727971615948297
 GameObject:
   m_ObjectHideFlags: 0
@@ -1882,6 +1890,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+  nextSceneName: 
 --- !u!1 &5239167405454300668
 GameObject:
   m_ObjectHideFlags: 0
@@ -1989,6 +1998,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+  nextSceneName: 
 --- !u!1 &5683554897897359977
 GameObject:
   m_ObjectHideFlags: 0

@@ -47,11 +47,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxTime: 30
+  gameOverDarkTime: 3
   finishIntervalTime: 3
   finishDarkIntervalTime: 3.5
   fieldsScript: {fileID: 0}
   startResultIntervalTime: 2
+  saturatedLineObj: {fileID: 0}
   beforeStartObj: {fileID: 0}
+  gameOverObj: {fileID: 0}
   finishObj: {fileID: 0}
   timeLimitObj: {fileID: 0}
   countText: {fileID: 0}
@@ -63,6 +66,7 @@ MonoBehaviour:
   finishesAnimator: {fileID: 0}
   darkBackgroundAnimator: {fileID: 0}
   finishFramesAnimator: {fileID: 0}
+  gameOverDarkAnimator: {fileID: 0}
 --- !u!114 &5759089661822000022
 MonoBehaviour:
   m_ObjectHideFlags: 0

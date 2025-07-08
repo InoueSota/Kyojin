@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TitleManager : MonoBehaviour
+public class GameOverManager : MonoBehaviour
 {
     // My Component
     private InputManager inputManager;
@@ -29,20 +29,15 @@ public class TitleManager : MonoBehaviour
         // 入力状況を取得する
         inputManager.GetAllInput();
 
-        // ゲーム開始処理
-        GameStart();
+        // シーン遷移処理
+        ChangeScene();
     }
-    void GameStart()
+    void ChangeScene()
     {
         pushAIntervalTimer -= Time.deltaTime;
 
         if (!isChangeScene && pushAIntervalTimer <= 0f && inputManager.IsTrgger(inputManager.a))
         {
-            int randomNum = Random.Range(0, 99);
-
-            if (randomNum % 2 == 0) { darkAnimator.gameObject.GetComponent<FinishAnimation>().SetNextSceneName("Stage1"); }
-            else { darkAnimator.gameObject.GetComponent<FinishAnimation>().SetNextSceneName("Stage2"); }
-
             darkAnimator.SetTrigger("StartFadeIn");
 
             isChangeScene = true;
@@ -53,5 +48,4 @@ public class TitleManager : MonoBehaviour
     {
         inputManager.SetIsGetInput();
     }
-
 }

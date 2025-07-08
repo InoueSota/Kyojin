@@ -22,6 +22,10 @@ public class GameManager : MonoBehaviour
     private float timeLimit;
     private int discoveryCount;
 
+    [Header("Game Over paramter")]
+    [SerializeField] private float gameOverDarkTime;
+    private float gameOverDarkTimer;
+
     [Header("Finish Parameter")]
     [SerializeField] private float finishIntervalTime;
     [SerializeField] private float finishDarkIntervalTime;
@@ -50,6 +54,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Animator finishesAnimator;
     [SerializeField] private Animator darkBackgroundAnimator;
     [SerializeField] private Animator finishFramesAnimator;
+    [SerializeField] private Animator gameOverDarkAnimator;
 
     void Start()
     {
@@ -79,6 +84,8 @@ public class GameManager : MonoBehaviour
 
         // ゲーム開始処理
         GameStart();
+        // ゲーム失敗処理
+        GameOver();
         // ゲーム終了処理
         Finish();
         // リザルト処理
@@ -101,7 +108,12 @@ public class GameManager : MonoBehaviour
     {
         if (isGameOver)
         {
+            gameOverDarkTimer -= Time.deltaTime;
 
+            if (gameOverDarkTimer <= 0f)
+            {
+                gameOverDarkAnimator.SetTrigger("Start");
+            }
         }
     }
     void TimeLimit()
@@ -235,6 +247,8 @@ public class GameManager : MonoBehaviour
         {
             // UIの表示／非表示を切り替える
             gameOverObj.SetActive(true);
+            // インターバルの設定
+            gameOverDarkTimer = gameOverDarkTime;
 
             isGameOver = _isGameOver;
         }
