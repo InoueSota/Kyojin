@@ -160,6 +160,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Car
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fffa55e796f69134e9e4021a824596c7, type: 3}
+      propertyPath: m_TagString
+      value: obj
+      objectReference: {fileID: 0}
     - target: {fileID: 6139140196609793367, guid: fffa55e796f69134e9e4021a824596c7, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
