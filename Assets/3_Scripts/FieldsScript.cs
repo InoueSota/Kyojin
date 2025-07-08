@@ -31,6 +31,7 @@ public class FieldsScript : MonoBehaviour
     [SerializeField] private CameraManager cameraManager;
     [SerializeField] private Material brightRed;
     [SerializeField] private float countIntervalTime;
+    [SerializeField] private AudioClip resultCountClip;
     private float countIntervalTimer;
     private int countNum;
     private bool canCount;
@@ -181,6 +182,9 @@ public class FieldsScript : MonoBehaviour
 
                 // カウントを次に進める
                 countNum++;
+
+                // 音を鳴らす
+                musicAudioSource.PlayOneShot(resultCountClip);
 
                 // ResultのTrueCountのTextにカウントを適用する
                 gameManager.SetTrueCount(countNum);

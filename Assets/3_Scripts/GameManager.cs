@@ -54,6 +54,19 @@ public class GameManager : MonoBehaviour
     private int redCount;
     private int errorNumber;
 
+    [Header("Result BGM")]
+    [SerializeField] private AudioSource childAudioSource;
+    [SerializeField] private AudioClip resultBGM;
+    [SerializeField] private float volumeDownTime;
+    private float volumeDownTimer;
+    [SerializeField] private float volumeDownStartTime;
+    [SerializeField] private float changeBGMTime;
+    private float resultBGMTimer;
+    private bool isStartChangeBGM;
+    private bool isStartVolumeDown;
+    private bool isFinishVolumeDown;
+    private bool isFinishChangeBGM;
+
     [Header("Result UI")]
     [SerializeField] private Text fadeYourCount;
     [SerializeField] private Text backYourCount;
@@ -70,6 +83,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject groupNotEnoughObj;
 
     [Header("Game UI")]
+    [SerializeField] private GameObject explanationObj;
     [SerializeField] private GameObject saturatedLineObj;
     [SerializeField] private GameObject beforeStartObj;
     [SerializeField] private GameObject gameOverObj;
@@ -92,10 +106,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Animator gameOverDarkAnimator;
     [SerializeField] private Animator darkAnimator;
 
+    [Header("Sound")]
+    [SerializeField] private AudioClip goClip;
+    [SerializeField] private AudioClip countUpClip;
+    [SerializeField] private AudioClip countDownClip;
+    private AudioSource audioSource;
+
     void Start()
     {
         // Set Component
         inputManager = GetComponent<InputManager>();
+        audioSource = GetComponent<AudioSource>();
 
         // Set Parameter
         timeLimit = maxTime;
@@ -204,6 +225,7 @@ public class GameManager : MonoBehaviour
             if (finishIntervalTimer <= 0f && isFinishEndAnimation && !isFinishDarkAnimation)
             {
                 // UIの表示／非表示を切り替える
+                explanationObj.SetActive(false);
                 saturatedLineObj.SetActive(false);
                 resultObj.SetActive(true);
 
@@ -211,6 +233,10 @@ public class GameManager : MonoBehaviour
                 fadeYourCount.text = string.Format("{0:00}", discoveryCount);
                 backYourCount.text = string.Format("{0:00}", discoveryCount);
                 yourCount.text = string.Format("{0:00}", discoveryCount);
+
+                // BGMを変えようとする処理開始
+                isStartChangeBGM = true;
+                resultBGMTimer = 0f;
 
                 // Animation開始
                 finishFramesAnimator.SetTrigger("Start");
@@ -303,6 +329,8 @@ public class GameManager : MonoBehaviour
 
                         if (!isChangeScene && inputManager.IsTrgger(inputManager.a))
                         {
+                            if (errorNumber == 0) { darkAnimator.gameObject.GetComponent<FinishAnimation>().SetNextSceneName("GameClearScene"); }
+                            else { darkAnimator.gameObject.GetComponent<FinishAnimation>().SetNextSceneName("TitleScene"); }
                             darkAnimator.SetTrigger("StartFadeIn");
 
                             isChangeScene = true;
@@ -328,12 +356,41 @@ public class GameManager : MonoBehaviour
                 isStartResult = true;
             }
         }
+
+        // Resultの音関係
+        if (isStartChangeBGM)
+        {
+            resultBGMTimer += Time.deltaTime;
+
+            if (!isStartVolumeDown && resultBGMTimer >= volumeDownStartTime)
+            {
+                volumeDownTimer = volumeDownTime;
+
+                // フラグをtrueにする
+                isStartVolumeDown = true;
+            }
+
+            if (!isFinishVolumeDown && isStartVolumeDown)
+            {
+                volumeDownTimer -= Time.deltaTime;
+                volumeDownTimer = Mathf.Clamp(volumeDownTimer, 0f, volumeDownTime);
+                childAudioSource.volume = (volumeDownTimer / volumeDownTime) * 0.2f;
+                if (volumeDownTimer <= 0f) { childAudioSource.Stop(); isFinishVolumeDown = true; }
+            }
+
+            if (!isFinishChangeBGM && resultBGMTimer >= changeBGMTime)
+            {
+                childAudioSource.volume = 0.2f;
+                childAudioSource.PlayOneShot(resultBGM);
+                isFinishChangeBGM = true;
+            }
+        }
     }
     void Count()
     {
         // Countの増減
-        if (inputManager.IsTrgger(inputManager.a)) { discoveryCount++; }
-        else if (inputManager.IsTrgger(inputManager.b)) { discoveryCount--; }
+        if (inputManager.IsTrgger(inputManager.a)) { discoveryCount++; audioSource.PlayOneShot(countUpClip); }
+        else if (inputManager.IsTrgger(inputManager.b)) { discoveryCount--; audioSource.PlayOneShot(countDownClip); }
 
         // Clamp
         discoveryCount = Mathf.Clamp(discoveryCount, 0, 99);
@@ -357,11 +414,13 @@ public class GameManager : MonoBehaviour
 
     // Setter
     public void SetStartReadyAnimation() { isFinishAnimation = true; readyAnimator.gameObject.SetActive(true); readyAnimator.SetTrigger("Start"); }
-    public void SetStartGoAnimation() { saturatedLineObj.SetActive(true); goAnimator.gameObject.SetActive(true); goAnimator.SetTrigger("Start"); }
+    public void SetStartGoAnimation() { audioSource.PlayOneShot(goClip); saturatedLineObj.SetActive(true); goAnimator.gameObject.SetActive(true); goAnimator.SetTrigger("Start"); }
     public void SetIsStart(bool _isStart)
     {
         // UIの表示／非表示を切り替える
         timeLimitObj.SetActive(true);
+
+        audioSource.volume = 0.2f;
 
         isStart = _isStart;
     }

@@ -2994,6 +2994,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1698357677}
     - target: {fileID: 8999146287008608985, guid: 144ac1b190d48564f8194b99d63b8759, type: 3}
+      propertyPath: explanationObj
+      value: 
+      objectReference: {fileID: 382290703}
+    - target: {fileID: 8999146287008608985, guid: 144ac1b190d48564f8194b99d63b8759, type: 3}
       propertyPath: fadeErrorCount
       value: 
       objectReference: {fileID: 2020411277}
@@ -3678,6 +3682,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05e5c2f529f0fa34fa9ba45ce3a827fc, type: 3}
+--- !u!1 &382290703 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2862404518426794850, guid: bd694d8992783054da7248207df71aa4, type: 3}
+  m_PrefabInstance: {fileID: 1506135921}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &383332674 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6950433018024496380, guid: 05e5c2f529f0fa34fa9ba45ce3a827fc, type: 3}
@@ -15900,6 +15909,17 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 5196016362110666184, guid: 2d9919a2351ab0a468c9c1cdb399ae75, type: 3}
   m_PrefabInstance: {fileID: 1698357676}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1698357681 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8880984620913454512, guid: 2d9919a2351ab0a468c9c1cdb399ae75, type: 3}
+  m_PrefabInstance: {fileID: 1698357676}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e63be0b94aa1758499b2c0962b56f668, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1701883845 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6950433018024496380, guid: 05e5c2f529f0fa34fa9ba45ce3a827fc, type: 3}
@@ -19253,10 +19273,11 @@ MonoBehaviour:
   RedList: []
   Grounds: []
   Roads: []
-  gameManager: {fileID: 0}
-  cameraManager: {fileID: 0}
+  gameManager: {fileID: 1819164697}
+  cameraManager: {fileID: 1698357681}
   brightRed: {fileID: 2100000, guid: 69a41b06f8a614144a664713fd5127c9, type: 2}
-  countIntervalTime: 0.8
+  countIntervalTime: 0.5
+  resultCountClip: {fileID: 8300000, guid: 125560146d969ab498b8b6088df95a7d, type: 3}
   musicAudioSource: {fileID: 0}
   beatSpeed: 2
   waveScale: 0.3
