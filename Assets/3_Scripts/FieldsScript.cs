@@ -7,12 +7,14 @@ public class FieldsScript : MonoBehaviour
     [Header("生成データ")]
     [SerializeField] int RandomMinNum;
     [SerializeField] int RandomMaxNum;
+    [SerializeField] int rand;
     [SerializeField] LayerMask obstacleLayer; // ← Inspectorで「Road」や建物などのLayerを指定
     [SerializeField] int maxRetryCount = 10;  // 最大リトライ回数（無限ループ防止）
 
     [Header("生成オブジェクト")]
     [SerializeField] GameObject Human;
     [SerializeField] GameObject Car;
+    [SerializeField] GameObject Plane;
 
     [Header("赤色オブジェクト")]
     [SerializeField] public int RedCount;
@@ -51,7 +53,9 @@ public class FieldsScript : MonoBehaviour
 
         for (int i = 0; i < createNum && availableGrounds.Count > 0; i++)
         {
-            if (Random.Range(0, 10) <= 6)
+            rand = Random.Range(0, 12);
+
+            if (rand <= 6)
             {
                 int index = Random.Range(0, availableGrounds.Count);
                 Vector3 spawnPos = availableGrounds[index].transform.position;
@@ -59,8 +63,7 @@ public class FieldsScript : MonoBehaviour
 
                 GameObject human = Instantiate(Human, spawnPos, Quaternion.identity);
                 human.transform.parent = GameObject.Find("Fields Characters").transform;
-            }
-            else
+            }else if(rand>6&&rand <= 9)
             {
                 int index = Random.Range(0, availableRoad.Count);
                 Vector3 spwnPos = availableRoad[index].transform.position;
@@ -69,6 +72,12 @@ public class FieldsScript : MonoBehaviour
                 GameObject car = Instantiate(Car, spwnPos, Quaternion.identity);
 
                 car.transform.parent = GameObject.Find("Fields Characters").transform;
+            }
+            else
+            {               
+                GameObject plane = Instantiate(Plane);
+
+                plane.transform.parent = GameObject.Find("Fields Characters").transform;
             }
         }
 
