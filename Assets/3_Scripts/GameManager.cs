@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     private float startResultIntervalTimer;
 
     [Header("Game UI")]
+    [SerializeField] private GameObject saturatedLineObj;
     [SerializeField] private GameObject beforeStartObj;
     [SerializeField] private GameObject finishObj;
     [SerializeField] private GameObject timeLimitObj;
@@ -214,7 +215,7 @@ public class GameManager : MonoBehaviour
 
     // Setter
     public void SetStartReadyAnimation() { isFinishAnimation = true; readyAnimator.gameObject.SetActive(true); readyAnimator.SetTrigger("Start"); }
-    public void SetStartGoAnimation() { goAnimator.gameObject.SetActive(true); goAnimator.SetTrigger("Start"); }
+    public void SetStartGoAnimation() { saturatedLineObj.SetActive(true); goAnimator.gameObject.SetActive(true); goAnimator.SetTrigger("Start"); }
     public void SetIsStart(bool _isStart)
     {
         // UIÇÃï\é¶Å^îÒï\é¶ÇêÿÇËë÷Ç¶ÇÈ
