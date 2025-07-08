@@ -27,6 +27,11 @@ public class HumanManager : MonoBehaviour
     [Header("Find Effect")]
     [SerializeField] private Sprite findSprite;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioClip doubtSE;
+    [SerializeField] private AudioClip findSE;
+    private AudioSource audioSource;
+
     // Flag
     private bool isRecognizedCamera;
 
@@ -40,6 +45,9 @@ public class HumanManager : MonoBehaviour
     {
         // Variables Initialize
         normalTimer = Random.Range(normalRandomMin, normalRandomMax) * normalRandomRange;
+
+        // Set My Components
+        audioSource = GetComponent<AudioSource>();
 
         // Set Other Transforms
         mainCameraTransform = GameObject.FindGameObjectWithTag("MainCamera").transform;
@@ -68,13 +76,7 @@ public class HumanManager : MonoBehaviour
                         // タイマーが0になったら
                         if (normalTimer <= 0f)
                         {
-                            // 表示するSpriteをクエスチョンマークに変更
-                            effectObj.GetComponent<SpriteRenderer>().sprite = doubtSprite;
-
-                            // タイマーの設定
-                            doubtTimer = doubtTime;
-                            // Statusを変更
-                            status = Status.DOUBT;
+                            ChangeStatus(Status.DOUBT);
                         }
                     }
 
@@ -90,30 +92,19 @@ public class HumanManager : MonoBehaviour
                         // タイマーが0になったら
                         if (doubtTimer <= 0f)
                         {
-                            // 表示するSpriteをエクスクラメーションマークに変更
-                            effectObj.GetComponent<SpriteRenderer>().sprite = findSprite;
-
-                            // Statusを変更
-                            status = Status.FIND;
+                            ChangeStatus(Status.FIND);
                         }
                     }
                     // カメラ非認識
                     else
                     {
-                        // Spriteを非表示にする
-                        effectObj.GetComponent<SpriteRenderer>().sprite = null;
-
-                        // タイマーの設定
-                        normalTimer = Random.Range(normalRandomMin, normalRandomMax) * normalRandomRange;
-                        // Statusを変更
-                        status = Status.NORMAL;
+                        ChangeStatus(Status.NORMAL);
                     }
 
                     break;
                 case Status.FIND:
                     break;
             }
-            Debug.Log(status);
         }
     }
     void CheckCamera()
@@ -131,5 +122,40 @@ public class HumanManager : MonoBehaviour
             // 衝突対象がMainCameraならカメラ認識フラグにはtrueが入る
             isRecognizedCamera = hit.collider.CompareTag("MainCamera");
         }
+    }
+    void ChangeStatus(Status _status)
+    {
+        switch (_status)
+        {
+            case Status.NORMAL:
+
+                // Spriteを非表示にする
+                effectObj.GetComponent<SpriteRenderer>().sprite = null;
+                // タイマーの設定
+                normalTimer = Random.Range(normalRandomMin, normalRandomMax) * normalRandomRange;
+
+                break;
+            case Status.DOUBT:
+
+                // 表示するSpriteをクエスチョンマークに変更
+                effectObj.GetComponent<SpriteRenderer>().sprite = doubtSprite;
+                // タイマーの設定
+                doubtTimer = doubtTime;
+                // 疑念音を鳴らす
+                audioSource.PlayOneShot(doubtSE);
+
+                break;
+            case Status.FIND:
+
+                // 表示するSpriteをエクスクラメーションマークに変更
+                effectObj.GetComponent<SpriteRenderer>().sprite = findSprite;
+                // 発見音を鳴らす
+                audioSource.PlayOneShot(findSE);
+
+                break;
+        }
+
+        // Statusを変更
+        status = _status;
     }
 }
