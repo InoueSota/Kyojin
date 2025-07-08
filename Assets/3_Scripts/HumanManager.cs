@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class HumanManager : MonoBehaviour
 {
-    private enum Status
+    public enum Status
     {
         NORMAL, // 通常状態
         DOUBT,  // 疑念
@@ -51,6 +51,7 @@ public class HumanManager : MonoBehaviour
 
         // Set Other Transforms
         mainCameraTransform = GameObject.FindGameObjectWithTag("MainCamera").transform;
+        mainCameraTransform.gameObject.GetComponent<CameraManager>().SetHumanManagers(this);
 
         // Set Other Components
         gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
@@ -149,6 +150,10 @@ public class HumanManager : MonoBehaviour
 
                 // 表示するSpriteをエクスクラメーションマークに変更
                 effectObj.GetComponent<SpriteRenderer>().sprite = findSprite;
+                // SpriteRendererを真っ赤にする
+                effectObj.GetComponent<SpriteRenderer>().color = Color.yellow;
+                // 大きくする
+                effectObj.transform.localScale = Vector3.one * 2f;
                 // 発見音を鳴らす
                 audioSource.PlayOneShot(findSE);
 
@@ -158,4 +163,9 @@ public class HumanManager : MonoBehaviour
         // Statusを変更
         status = _status;
     }
+
+    // Getter
+    public Status GetStatus() { return status; }
+    public float GetDoubtTimer() { return doubtTimer; }
+    public bool GetIsRecognizedCamera() { return isRecognizedCamera; }
 }

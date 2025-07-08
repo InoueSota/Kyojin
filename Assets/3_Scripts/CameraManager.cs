@@ -38,6 +38,19 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private Image wipeFrame;
     [SerializeField] private RawImage wipe;
 
+    [Header("Leak Out")]
+    [SerializeField] private RawImage saturatedLineImage;
+    private HumanManager[] humanManagers;
+    private int humanCount;
+    private float minDoubtTimer;
+
+    // Flag
+    private bool isLeakingOut;
+
+    void Awake()
+    {
+        humanManagers = new HumanManager[50];
+    }
     void Start()
     {
         // Get Other Component
@@ -59,8 +72,15 @@ public class CameraManager : MonoBehaviour
         // ゲーム中のみの処理
         if (gameManager.GetIsStart() && !gameManager.GetIsFinish())
         {
-            // 覗き
-            CameraMove();
+            if (!isLeakingOut)
+            {
+                // 覗き
+                CameraMove();
+                // バレているか
+                CheckLeakOut();
+            }
+            // バレた
+            else { LeakOut(); }
         }
 
         // ゲーム終了後の処理
@@ -130,9 +150,71 @@ public class CameraManager : MonoBehaviour
         }
     }
 
+    void CheckLeakOut()
+    {
+        bool noDoubt = true;
+
+        for (int i = 0; i < humanCount + 1; i++)
+        {
+            if (humanManagers[i] != null && humanManagers[i].GetStatus() == HumanManager.Status.DOUBT && humanManagers[i].GetIsRecognizedCamera())
+            {
+                // 未代入 || 現在の最小値よりも下回るタイマーの場合
+                if (minDoubtTimer == 0f || humanManagers[i].GetDoubtTimer() < minDoubtTimer)
+                {
+                    // 現在の最小値を更新する
+                    minDoubtTimer = humanManagers[i].GetDoubtTimer();
+                }
+                // Doubt発見
+                noDoubt = false;
+            }
+            else if (humanManagers[i] != null && humanManagers[i].GetStatus() == HumanManager.Status.FIND)
+            {
+                isLeakingOut = true;
+            }
+        }
+
+        if (!noDoubt)
+        {
+            saturatedLineImage.color = new(1f - minDoubtTimer / 3f, saturatedLineImage.color.g, saturatedLineImage.color.b, (1f - minDoubtTimer / 3f) / 2f + 0.5f);
+        }
+        else
+        {
+            saturatedLineImage.color = new(0f, saturatedLineImage.color.g, saturatedLineImage.color.b, 0.5f);
+            minDoubtTimer = 0f;
+        }
+    }
+    void LeakOut()
+    {
+        // 最覗きにする
+        targetPosition = Vector3.Lerp(stayPosition, peekPosition, 1f);
+        targetRotation = Vector3.Lerp(stayRotation, peekRotation, 1f);
+        // 集中線は真っ赤にする
+        saturatedLineImage.color = new(1f, saturatedLineImage.color.g, saturatedLineImage.color.b, 1f);
+        // Wipeの透明処理
+        backWipeFrame.color = new(backWipeFrame.color.r, backWipeFrame.color.g, backWipeFrame.color.b, 1f);
+        wipeFrame.color = new(wipeFrame.color.r, wipeFrame.color.g, wipeFrame.color.b, 1f);
+        wipe.color = new(wipe.color.r, wipe.color.g, wipe.color.b, 1f);
+    }
+
     // Setter
     public void ShakeStart()
     {
         transform.parent.DOShakePosition(0.3f, 0.3f, 15, 1, false, true);
+    }
+    public void SetHumanManagers(HumanManager _humanManager)
+    {
+        int index = 0;
+        bool isFinishSetting = false;
+
+        while (!isFinishSetting)
+        {
+            if (humanManagers[index] == null)
+            {
+                humanManagers[index] = _humanManager;
+                humanCount = index;
+                isFinishSetting = true;
+            }
+            index++;
+        }
     }
 }
