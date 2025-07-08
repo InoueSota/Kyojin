@@ -1533,6 +1533,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6229884427113930033, guid: bd694d8992783054da7248207df71aa4, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 5732375704329349808}
     - target: {fileID: 7123109296005374138, guid: bd694d8992783054da7248207df71aa4, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1877,6 +1881,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d9919a2351ab0a468c9c1cdb399ae75, type: 3}
+--- !u!20 &5732375704329349808 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 5196016362110666184, guid: 2d9919a2351ab0a468c9c1cdb399ae75, type: 3}
+  m_PrefabInstance: {fileID: 5732375704329349807}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

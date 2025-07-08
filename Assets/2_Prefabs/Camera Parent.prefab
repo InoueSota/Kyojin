@@ -198,6 +198,9 @@ MonoBehaviour:
   resultTargetCameraRotation: {x: -35, y: 0, z: 0}
   resultIntervalTime: 20
   chasePower: 5
+  backWipeFrame: {fileID: 0}
+  wipeFrame: {fileID: 0}
+  wipe: {fileID: 0}
 --- !u!114 &6381530606053644935
 MonoBehaviour:
   m_ObjectHideFlags: 0

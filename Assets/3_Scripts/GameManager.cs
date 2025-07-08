@@ -94,6 +94,10 @@ public class GameManager : MonoBehaviour
             isStartAnimation = true;
         }
     }
+    void GameOver()
+    {
+
+    }
     void TimeLimit()
     {
         // ŽžŠÔŒo‰ß

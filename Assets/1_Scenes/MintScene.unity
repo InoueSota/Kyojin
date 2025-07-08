@@ -14902,6 +14902,10 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6229884427113930033, guid: bd694d8992783054da7248207df71aa4, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1698357683}
     - target: {fileID: 7123109296005374138, guid: bd694d8992783054da7248207df71aa4, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -17069,6 +17073,11 @@ PrefabInstance:
 --- !u!95 &1698357677 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 461485790184916720, guid: 2d9919a2351ab0a468c9c1cdb399ae75, type: 3}
+  m_PrefabInstance: {fileID: 1698357676}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &1698357683 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 5196016362110666184, guid: 2d9919a2351ab0a468c9c1cdb399ae75, type: 3}
   m_PrefabInstance: {fileID: 1698357676}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1701792974 stripped
