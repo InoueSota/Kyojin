@@ -1630,6 +1630,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd694d8992783054da7248207df71aa4, type: 3}
+--- !u!1 &1250633893202118748 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3147784979366796263, guid: bd694d8992783054da7248207df71aa4, type: 3}
+  m_PrefabInstance: {fileID: 1250633893202118747}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3433572469609314589
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1714,6 +1719,10 @@ PrefabInstance:
       propertyPath: cameraAnimator
       value: 
       objectReference: {fileID: 712368783}
+    - target: {fileID: 8999146287008608985, guid: 144ac1b190d48564f8194b99d63b8759, type: 3}
+      propertyPath: saturatedLineObj
+      value: 
+      objectReference: {fileID: 1250633893202118748}
     - target: {fileID: 8999146287008608985, guid: 144ac1b190d48564f8194b99d63b8759, type: 3}
       propertyPath: startAnimationTime
       value: 3
