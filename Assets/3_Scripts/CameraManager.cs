@@ -1,5 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CameraManager : MonoBehaviour
 {
@@ -32,6 +33,11 @@ public class CameraManager : MonoBehaviour
     private Vector3 nowPosition;
     private Vector3 nowRotation;
 
+    [Header("Wipes")]
+    [SerializeField] private Image backWipeFrame;
+    [SerializeField] private Image wipeFrame;
+    [SerializeField] private RawImage wipe;
+
     void Start()
     {
         // Get Other Component
@@ -54,7 +60,7 @@ public class CameraManager : MonoBehaviour
         if (gameManager.GetIsStart() && !gameManager.GetIsFinish())
         {
             // ”`‚«
-            Peek();
+            CameraMove();
         }
 
         // ƒQ[ƒ€I—¹Œã‚Ìˆ—
@@ -71,7 +77,7 @@ public class CameraManager : MonoBehaviour
         }
     }
 
-    void Peek()
+    void CameraMove()
     {
         float inputVertical = inputManager.ReturnInputValue(inputManager.vertical);
 
@@ -80,12 +86,22 @@ public class CameraManager : MonoBehaviour
         {
             targetPosition = Vector3.Lerp(stayPosition, peekPosition, inputVertical);
             targetRotation = Vector3.Lerp(stayRotation, peekRotation, inputVertical);
+
+            // Wipe‚Ì“§–¾ˆ—
+            backWipeFrame.color = new(backWipeFrame.color.r, backWipeFrame.color.g, backWipeFrame.color.b, 1f);
+            wipeFrame.color = new(wipeFrame.color.r, wipeFrame.color.g, wipeFrame.color.b, 1f);
+            wipe.color = new(wipe.color.r, wipe.color.g, wipe.color.b, 1f);
         }
         // •‰•ûŒü‚É“ü—Í‚ğó‚¯•t‚¯‚Ä‚¢‚é‚Æ‚«
         else if (inputVertical < 0f)
         {
             targetPosition = Vector3.Lerp(stayPosition, crouchPosition, Mathf.Abs(inputVertical));
             targetRotation = Vector3.Lerp(stayRotation, crouchRotation, Mathf.Abs(inputVertical));
+
+            // Wipe‚Ì“§–¾ˆ—
+            backWipeFrame.color = new(backWipeFrame.color.r, backWipeFrame.color.g, backWipeFrame.color.b, inputVertical + 1f);
+            wipeFrame.color = new(wipeFrame.color.r, wipeFrame.color.g, wipeFrame.color.b, inputVertical + 1f);
+            wipe.color = new(wipe.color.r, wipe.color.g, wipe.color.b, inputVertical + 1f);
         }
     }
     void Chase()

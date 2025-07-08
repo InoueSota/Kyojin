@@ -4,9 +4,6 @@ using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {
-    [Header("ワイプ")]
-    [SerializeField] RawImage Wipe;
-
     [SerializeField] Ease easeStart;
     [SerializeField] float easeStartTime;
     
@@ -30,7 +27,6 @@ public class PlayerScript : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        Wipe = GameObject.Find("Wipe").GetComponent<RawImage>();
     }
 
     // Update is called once per frame
@@ -43,7 +39,7 @@ public class PlayerScript : MonoBehaviour
             case Mode.Title:
                 if (gameManager.GetIsStartAnimation())
                 {
-                    transform.DOMove(new Vector3(-1, 5.5f, -19), easeStartTime).SetEase(easeStart).OnComplete(() =>
+                    transform.DOMove(new Vector3(-4.5f, 5.5f, -19), easeStartTime).SetEase(easeStart).OnComplete(() =>
                     {
                         mode = Mode.Game;
                         animator.SetTrigger("isStart");
@@ -80,19 +76,9 @@ public class PlayerScript : MonoBehaviour
                 {
                     Debug.Log("上見てるにょ");
                     transform.rotation = Quaternion.Euler(Input.GetAxis("Vertical")*-20, 180f, 0f);
-                    //ワイプを半透明に
-                    Color color = Wipe.color;  
-                    color.a = 0.5f;            
-                    Wipe.color = color;        
-
                 }
                 else
                 {
-                    //ワイプを元に戻す
-                    Color color = Wipe.color;
-                    color.a = 1.0f;
-                    Wipe.color = color;
-
                     transform.rotation = Quaternion.Euler(0f, 180f, 0f);
                 }
 
