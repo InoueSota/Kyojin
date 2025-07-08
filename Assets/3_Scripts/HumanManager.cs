@@ -59,7 +59,7 @@ public class HumanManager : MonoBehaviour
 
     void Update()
     {
-        if (gameManager.GetIsStart())
+        if (gameManager.GetIsStart() && !gameManager.GetIsFinish())
         {
             // ƒJƒƒ‰‚ÉŒ©‚ç‚ê‚Ä‚¢‚é‚©”»’è
             CheckCamera();

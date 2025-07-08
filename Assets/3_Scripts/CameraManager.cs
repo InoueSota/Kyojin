@@ -23,8 +23,6 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private Vector3 resultCameraPosition;
     [SerializeField] private Vector3 resultCameraRotation;
     [SerializeField] private Vector3 resultTargetCameraRotation;
-    [SerializeField] private float resultIntervalTime;
-    private float resultIntervalTimer;
 
     [Header("Chase Parameter")]
     [SerializeField] private float chasePower;
@@ -46,6 +44,7 @@ public class CameraManager : MonoBehaviour
 
     // Flag
     private bool isLeakingOut;
+    private bool isFinishCount;
 
     void Awake()
     {
@@ -136,10 +135,7 @@ public class CameraManager : MonoBehaviour
     }
     void Result()
     {
-        // インターバルの更新
-        resultIntervalTimer += Time.deltaTime;
-
-        if (resultIntervalTimer >= resultIntervalTime)
+        if (isFinishCount)
         {
             targetRotation = resultTargetCameraRotation;
         }
@@ -220,4 +216,5 @@ public class CameraManager : MonoBehaviour
             index++;
         }
     }
+    public void SetIsFinishCount(bool _isFinishCount) { isFinishCount = _isFinishCount; }
 }

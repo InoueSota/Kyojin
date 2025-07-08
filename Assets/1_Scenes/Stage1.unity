@@ -3419,7 +3419,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8999146287008608985, guid: 144ac1b190d48564f8194b99d63b8759, type: 3}
       propertyPath: maxTime
-      value: 100
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8999146287008608985, guid: 144ac1b190d48564f8194b99d63b8759, type: 3}
       propertyPath: countText
@@ -17995,6 +17995,17 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 5196016362110666184, guid: 2d9919a2351ab0a468c9c1cdb399ae75, type: 3}
   m_PrefabInstance: {fileID: 1698357676}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1698357681 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8880984620913454512, guid: 2d9919a2351ab0a468c9c1cdb399ae75, type: 3}
+  m_PrefabInstance: {fileID: 1698357676}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e63be0b94aa1758499b2c0962b56f668, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1701792974 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6950433018024496380, guid: 05e5c2f529f0fa34fa9ba45ce3a827fc, type: 3}
@@ -21458,8 +21469,9 @@ MonoBehaviour:
   RedList: []
   Grounds: []
   Roads: []
+  cameraManager: {fileID: 1698357681}
   brightRed: {fileID: 2100000, guid: 69a41b06f8a614144a664713fd5127c9, type: 2}
-  countIntervalTime: 0.8
+  countIntervalTime: 0.5
   musicAudioSource: {fileID: 0}
   beatSpeed: 2
   waveScale: 0.3

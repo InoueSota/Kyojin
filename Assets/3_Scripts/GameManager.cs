@@ -166,6 +166,7 @@ public class GameManager : MonoBehaviour
             if (finishIntervalTimer <= 0f && isFinishEndAnimation && !isFinishDarkAnimation)
             {
                 // UIの表示／非表示を切り替える
+                saturatedLineObj.SetActive(false);
                 resultObj.SetActive(true);
 
                 // Animation開始
