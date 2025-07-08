@@ -14857,6 +14857,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1840691094633020106, guid: bd694d8992783054da7248207df71aa4, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7123109296005374138, guid: bd694d8992783054da7248207df71aa4, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -14945,6 +14949,10 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1819164697}
+    - target: {fileID: 8579901418461674561, guid: bd694d8992783054da7248207df71aa4, type: 3}
+      propertyPath: m_Color.a
+      value: 0.4745098
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21381,6 +21389,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 296728159}
+    - target: {fileID: 9080094913109199383, guid: 7da48d458568d194e8b085f4cec78d5f, type: 3}
+      propertyPath: easeStartTime
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
