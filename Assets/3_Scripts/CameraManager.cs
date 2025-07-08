@@ -185,6 +185,9 @@ public class CameraManager : MonoBehaviour
     }
     void LeakOut()
     {
+        // GameManager
+        if (!gameManager.GetIsGameOver()) { gameManager.SetIsGameOver(true); }
+
         // ç≈î`Ç´Ç…Ç∑ÇÈ
         targetPosition = Vector3.Lerp(stayPosition, peekPosition, 1f);
         targetRotation = Vector3.Lerp(stayRotation, peekRotation, 1f);

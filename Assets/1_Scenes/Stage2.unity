@@ -2929,6 +2929,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1506135924}
     - target: {fileID: 8999146287008608985, guid: 144ac1b190d48564f8194b99d63b8759, type: 3}
+      propertyPath: gameOverObj
+      value: 
+      objectReference: {fileID: 1806938742}
+    - target: {fileID: 8999146287008608985, guid: 144ac1b190d48564f8194b99d63b8759, type: 3}
       propertyPath: fieldsScript
       value: 
       objectReference: {fileID: 2047147412}
@@ -13221,6 +13225,14 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1698357678}
+    - target: {fileID: 6496200469527666048, guid: bd694d8992783054da7248207df71aa4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6496200469527666048, guid: bd694d8992783054da7248207df71aa4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7123109296005374138, guid: bd694d8992783054da7248207df71aa4, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -15971,6 +15983,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7797111010211935637, guid: 34d7c607ef76d834f94ddd947189e686, type: 3}
   m_PrefabInstance: {fileID: 1127262664}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1806938742 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1623874040380217592, guid: bd694d8992783054da7248207df71aa4, type: 3}
+  m_PrefabInstance: {fileID: 1506135921}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1807660351
 PrefabInstance:

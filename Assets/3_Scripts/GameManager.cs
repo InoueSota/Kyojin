@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     // Flag
     private bool isStart;
     private bool isFinish;
+    private bool isGameOver;
     private bool isStartAnimation;
     private bool isFinishAnimation;
     private bool isFinishEndAnimation;
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour
     [Header("Game UI")]
     [SerializeField] private GameObject saturatedLineObj;
     [SerializeField] private GameObject beforeStartObj;
+    [SerializeField] private GameObject gameOverObj;
     [SerializeField] private GameObject finishObj;
     [SerializeField] private GameObject timeLimitObj;
     private Text timeLimitText;
@@ -97,7 +99,10 @@ public class GameManager : MonoBehaviour
     }
     void GameOver()
     {
+        if (isGameOver)
+        {
 
+        }
     }
     void TimeLimit()
     {
@@ -196,7 +201,7 @@ public class GameManager : MonoBehaviour
 
         // Clamp
         discoveryCount = Mathf.Clamp(discoveryCount, 0, 99);
-        
+
         // Textに適用
         countText.text = string.Format("{0:00}", discoveryCount);
     }
@@ -209,9 +214,10 @@ public class GameManager : MonoBehaviour
     // Getter
     public bool GetIsStart() { return isStart; }
     public bool GetIsStartAnimation() { return isStartAnimation; }
+    public bool GetIsGameOver() { return isGameOver; }
     public bool GetIsFinish() { return isFinish; }
-    public bool GetIsFinishAnimation() {  return isFinishAnimation; }
-    public bool GetIsFinishDarkAnimation() {  return isFinishDarkAnimation; }
+    public bool GetIsFinishAnimation() { return isFinishAnimation; }
+    public bool GetIsFinishDarkAnimation() { return isFinishDarkAnimation; }
 
     // Setter
     public void SetStartReadyAnimation() { isFinishAnimation = true; readyAnimator.gameObject.SetActive(true); readyAnimator.SetTrigger("Start"); }
@@ -222,5 +228,15 @@ public class GameManager : MonoBehaviour
         timeLimitObj.SetActive(true);
 
         isStart = _isStart;
+    }
+    public void SetIsGameOver(bool _isGameOver)
+    {
+        if (_isGameOver)
+        {
+            // UIの表示／非表示を切り替える
+            gameOverObj.SetActive(true);
+
+            isGameOver = _isGameOver;
+        }
     }
 }
