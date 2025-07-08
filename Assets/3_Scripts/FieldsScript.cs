@@ -55,35 +55,48 @@ public class FieldsScript : MonoBehaviour
         {
             rand = Random.Range(0, 12);
 
-            if (rand <= 6)
+            if (rand <= 6 && availableGrounds.Count > 0)
             {
                 int index = Random.Range(0, availableGrounds.Count);
                 Vector3 spawnPos = availableGrounds[index].transform.position;
-                availableGrounds.RemoveAt(index); // 重複防止
+                availableGrounds.RemoveAt(index);
 
                 GameObject human = Instantiate(Human, spawnPos, Quaternion.identity);
                 human.transform.parent = GameObject.Find("Fields Characters").transform;
-            }else if(rand>6&&rand <= 9)
+            }
+            else if (rand > 6 && rand <= 9)
             {
-                int index = Random.Range(0, availableRoad.Count);
-                Vector3 spwnPos = availableRoad[index].transform.position;
-                availableRoad.RemoveAt(index);
+                if (availableRoad.Count > 0)
+                {
+                    int index = Random.Range(0, availableRoad.Count);
+                    Vector3 spwnPos = availableRoad[index].transform.position;
+                    availableRoad.RemoveAt(index);
 
-                GameObject car = Instantiate(Car, spwnPos, Quaternion.identity);
-
-                car.transform.parent = GameObject.Find("Fields Characters").transform;
+                    GameObject car = Instantiate(Car, spwnPos, Quaternion.identity);
+                    car.transform.parent = GameObject.Find("Fields Characters").transform;
+                }
+                else
+                {
+                    Debug.LogWarning("availableRoadが空なのでCarを生成できませんでした");
+                    continue;
+                }
             }
             else
-            {               
-                GameObject plane = Instantiate(Plane);
-
-                plane.transform.parent = GameObject.Find("Fields Characters").transform;
+            {
+                if (Plane != null)
+                {
+                    GameObject plane = Instantiate(Plane);
+                    plane.transform.parent = GameObject.Find("Fields Characters").transform;
+                }
+                else
+                {
+                    Debug.LogWarning("Planeプレハブが設定されていません");
+                }
             }
         }
 
-
         //米くする
-        
+
 
     }
 
