@@ -1,37 +1,46 @@
+ï»¿using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class FieldsScript : MonoBehaviour
 {
-    [Header("¶¬ƒf[ƒ^")]
+    [Header("ç”Ÿæˆãƒ‡ãƒ¼ã‚¿")]
     [SerializeField] int RandomMinNum;
     [SerializeField] int RandomMaxNum;
     [SerializeField] int rand;
-    [SerializeField] LayerMask obstacleLayer; // © Inspector‚ÅuRoadv‚âŒš•¨‚È‚Ç‚ÌLayer‚ğw’è
-    [SerializeField] int maxRetryCount = 10;  // Å‘åƒŠƒgƒ‰ƒC‰ñ”i–³ŒÀƒ‹[ƒv–h~j
+    [SerializeField] LayerMask obstacleLayer; // â† Inspectorã§ã€ŒRoadã€ã‚„å»ºç‰©ãªã©ã®Layerã‚’æŒ‡å®š
+    [SerializeField] int maxRetryCount = 10;  // æœ€å¤§ãƒªãƒˆãƒ©ã‚¤å›æ•°ï¼ˆç„¡é™ãƒ«ãƒ¼ãƒ—é˜²æ­¢ï¼‰
 
-    [Header("¶¬ƒIƒuƒWƒFƒNƒg")]
+    [Header("ç”Ÿæˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ")]
     [SerializeField] GameObject Human;
     [SerializeField] GameObject Car;
     [SerializeField] GameObject Plane;
 
-    [Header("ÔFƒIƒuƒWƒFƒNƒg")]
+    [Header("èµ¤è‰²ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ")]
     [SerializeField] public int RedCount;
     [SerializeField] List<GameObject> RedList = new List<GameObject>();
 
-    [Header("ƒtƒB[ƒ‹ƒhƒIƒuƒWƒFƒNƒg")]
+    [Header("ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ")]
     [SerializeField] List<GameObject> Grounds = new List<GameObject>();
     [SerializeField] List<GameObject> Roads = new List<GameObject>();
 
-    [Header("ƒŠƒUƒ‹ƒgŠÖŒW")]
+    [Header("ãƒªã‚¶ãƒ«ãƒˆé–¢ä¿‚")]
     [SerializeField] private Material brightRed;
     [SerializeField] private float countIntervalTime;
     private float countIntervalTimer;
     private int countNum;
     private bool canCount;
-
-  
+    [Header("éŸ³é–¢ä¿‚")]
+    [SerializeField] AudioSource musicAudioSource;
+    [SerializeField] float beatSpeed = 2f; // æ‹ã®é€Ÿã•ï¼ˆä¾‹ï¼š2ãªã‚‰1ç§’ã«2å›ãµãã‚‰ã‚€ï¼‰
+    [SerializeField] float waveScale = 0.3f;
+    float[] spectrum = new float[64];
+    [SerializeField] float threshold = 0.01f; // åå¿œã™ã‚‹æœ€å°éŸ³é‡ï¼ˆã—ãã„å€¤ï¼‰
+    [SerializeField] float scaleFactor = 0.3f;
+    [SerializeField] float decaySpeed = 2f;
+    float currentScale = 1f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -77,7 +86,7 @@ public class FieldsScript : MonoBehaviour
                 }
                 else
                 {
-                    Debug.LogWarning("availableRoad‚ª‹ó‚È‚Ì‚ÅCar‚ğ¶¬‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½");
+                    Debug.LogWarning("availableRoadãŒç©ºãªã®ã§Carã‚’ç”Ÿæˆã§ãã¾ã›ã‚“ã§ã—ãŸ");
                     continue;
                 }
             }
@@ -90,12 +99,12 @@ public class FieldsScript : MonoBehaviour
                 }
                 else
                 {
-                    Debug.LogWarning("PlaneƒvƒŒƒnƒu‚ªİ’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ");
+                    Debug.LogWarning("Planeãƒ—ãƒ¬ãƒãƒ–ãŒè¨­å®šã•ã‚Œã¦ã„ã¾ã›ã‚“");
                 }
             }
         }
 
-        //•Ä‚­‚·‚é
+        //ç±³ãã™ã‚‹
 
 
     }
@@ -103,16 +112,54 @@ public class FieldsScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        musicAudioSource.GetSpectrumData(spectrum, 0, FFTWindow.BlackmanHarris);
+        float volume = spectrum[1] + spectrum[2] + spectrum[3]; // ä½éŸ³å¸¯åŸŸï¼ˆèª¿æ•´å¯ï¼‰
+
+        foreach (Obj_RandomColor obj in GameObject.FindObjectsOfType<Obj_RandomColor>())
+        {
+            if (volume > obj.threshold)
+            {
+                obj.currentScale = 1f + volume * obj.scaleFactor;
+            }
+            else
+            {
+                obj.currentScale = Mathf.Lerp(obj.currentScale, 1f, Time.deltaTime * 5f); // å…ƒã«æˆ»ã‚‹
+            }
+
+            obj.transform.localScale = obj.origineScale * obj.currentScale;
+        }
+
+
+        //musicAudioSource.GetSpectrumData(spectrum, 0, FFTWindow.BlackmanHarris);
+
+        //// ä½éŸ³æˆåˆ†ã‹ã‚‰éŸ³é‡ã‚’å–å¾—ï¼ˆindex 1ã€œ4ãã‚‰ã„ãŒä½éŸ³ï¼‰
+        //float volume = spectrum[1] + spectrum[2] + spectrum[3];
+
+        //if (volume > threshold)
+        //{
+        //    currentScale = 1f + volume * scaleFactor;
+        //}
+        //else
+        //{
+        //    // å¾ã€…ã«å…ƒã®å¤§ãã•ã«æˆ»ã™
+        //    currentScale = Mathf.Lerp(currentScale, 1f, Time.deltaTime * decaySpeed);
+        //}
+
+        //foreach (Obj_RandomColor obj in GameObject.FindObjectsOfType<Obj_RandomColor>())
+        //{
+        //    obj.transform.localScale = obj.origineScale * currentScale;
+        //}
+
+        // èµ¤è‰²æ¤œçŸ¥
         foreach (Obj_RandomColor obj in GameObject.FindObjectsOfType<Obj_RandomColor>())
         {
             if (obj.isRed && !RedList.Contains(obj.gameObject))
             {
-                //Debug.Log("ÔF‚ÅƒŠƒXƒg‚É–¢“o˜^F " + obj.gameObject.name);
                 RedList.Add(obj.gameObject);
             }
         }
-        RedCount = RedList.Count;
 
+        RedCount = RedList.Count;
         Result();
     }
 
@@ -120,18 +167,18 @@ public class FieldsScript : MonoBehaviour
     {
         if (canCount)
         {
-            // ƒCƒ“ƒ^[ƒoƒ‹‚ÌXV
+            // ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒ«ã®æ›´æ–°
             countIntervalTimer -= Time.deltaTime;
 
             if (countIntervalTimer <= 0f && countNum < RedList.Count)
             {
-                // ƒJƒEƒ“ƒg‚É‘Î‰‚µ‚½GameObject‚ÌMaterial‚ğ•ÏX‚·‚é
+                // ã‚«ã‚¦ãƒ³ãƒˆã«å¯¾å¿œã—ãŸGameObjectã®Materialã‚’å¤‰æ›´ã™ã‚‹
                 RedList[countNum].GetComponent<MeshRenderer>().material = brightRed;
 
-                // ƒJƒEƒ“ƒg‚ğŸ‚Éi‚ß‚é
+                // ã‚«ã‚¦ãƒ³ãƒˆã‚’æ¬¡ã«é€²ã‚ã‚‹
                 countNum++;
 
-                // ƒCƒ“ƒ^[ƒoƒ‹‚ÌÄİ’è
+                // ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒ«ã®å†è¨­å®š
                 countIntervalTimer = countIntervalTime;
             }
         }
