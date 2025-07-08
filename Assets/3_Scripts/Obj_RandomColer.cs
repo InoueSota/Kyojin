@@ -19,7 +19,7 @@ public class Obj_RandomColor : MonoBehaviour
    
     [HideInInspector] public float threshold;      // 個別しきい値
     [HideInInspector] public float scaleFactor;    // 個別拡大倍率
-    [HideInInspector] public float currentScale = 1f;  // 拡大状態（保持）
+    public float currentScale = 1f;  // 拡大状態（保持）
 
 
     [SerializeField] int randomNum;
@@ -43,7 +43,7 @@ public class Obj_RandomColor : MonoBehaviour
 
         GetComponent<MeshRenderer>().material = material;
         // ランダム初期化（範囲は調整可能）
-        threshold = Random.Range(0.04f, 0.2f);
+        threshold = Random.Range(0.04f, 0.15f);
         scaleFactor = Random.Range(1.2f, 7.0f);
     }
 

@@ -119,13 +119,13 @@ public class FieldsScript : MonoBehaviour
 
         foreach (Obj_RandomColor obj in GameObject.FindObjectsOfType<Obj_RandomColor>())
         {
-            if (volume > obj.threshold)
+            if (volume > obj.threshold && obj.currentScale <= 1.01f)
             {
                 obj.currentScale = 1f + volume * obj.scaleFactor;
             }
             else
             {
-                obj.currentScale = Mathf.Lerp(obj.currentScale, 1f, Time.deltaTime * 5f); // 元に戻る
+                obj.currentScale = Mathf.Lerp(obj.currentScale, 1f, Time.deltaTime * 3f); // 元に戻る
             }
 
             obj.transform.localScale = obj.origineScale * obj.currentScale;
