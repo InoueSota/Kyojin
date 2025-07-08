@@ -27,6 +27,7 @@ public class FieldsScript : MonoBehaviour
     [SerializeField] List<GameObject> Roads = new List<GameObject>();
 
     [Header("リザルト関係")]
+    [SerializeField] private GameManager gameManager;
     [SerializeField] private CameraManager cameraManager;
     [SerializeField] private Material brightRed;
     [SerializeField] private float countIntervalTime;
@@ -181,6 +182,9 @@ public class FieldsScript : MonoBehaviour
                 // カウントを次に進める
                 countNum++;
 
+                // ResultのTrueCountのTextにカウントを適用する
+                gameManager.SetTrueCount(countNum);
+
                 // インターバルの再設定
                 countIntervalTimer = countIntervalTime;
             }
@@ -188,9 +192,6 @@ public class FieldsScript : MonoBehaviour
             {
                 // 最後のGameObjectのMaterialを変更したら
                 cameraManager.SetIsFinishCount(true);
-
-                // カウントを次に進める
-                countNum++;
             }
         }
     }

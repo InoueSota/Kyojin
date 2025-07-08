@@ -216,5 +216,5 @@ public class CameraManager : MonoBehaviour
             index++;
         }
     }
-    public void SetIsFinishCount(bool _isFinishCount) { isFinishCount = _isFinishCount; }
+    public void SetIsFinishCount(bool _isFinishCount) { isFinishCount = _isFinishCount; gameManager.SetIsFinishCount(_isFinishCount); }
 }

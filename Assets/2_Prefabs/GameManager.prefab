@@ -52,6 +52,23 @@ MonoBehaviour:
   finishDarkIntervalTime: 3.5
   fieldsScript: {fileID: 0}
   startResultIntervalTime: 2
+  toYourPhaseTime: 1
+  toTruePhaseTime: 2
+  toErrorPhaseTime: 3
+  toResultPhaseTime: 4
+  fadeYourCount: {fileID: 0}
+  backYourCount: {fileID: 0}
+  yourCount: {fileID: 0}
+  fadeTrueCount: {fileID: 0}
+  backTrueCount: {fileID: 0}
+  trueCount: {fileID: 0}
+  fadeErrorCount: {fileID: 0}
+  backErrorCount: {fileID: 0}
+  errorCount: {fileID: 0}
+  groupErrorObj: {fileID: 0}
+  groupPerfectObj: {fileID: 0}
+  groupTooManyObj: {fileID: 0}
+  groupNotEnoughObj: {fileID: 0}
   saturatedLineObj: {fileID: 0}
   beforeStartObj: {fileID: 0}
   gameOverObj: {fileID: 0}
@@ -60,6 +77,7 @@ MonoBehaviour:
   countText: {fileID: 0}
   afterFinishTextsObj: {fileID: 0}
   resultObj: {fileID: 0}
+  resultBackGroundObj: {fileID: 0}
   cameraAnimator: {fileID: 0}
   readyAnimator: {fileID: 0}
   goAnimator: {fileID: 0}
@@ -67,6 +85,7 @@ MonoBehaviour:
   darkBackgroundAnimator: {fileID: 0}
   finishFramesAnimator: {fileID: 0}
   gameOverDarkAnimator: {fileID: 0}
+  darkAnimator: {fileID: 0}
 --- !u!114 &5759089661822000022
 MonoBehaviour:
   m_ObjectHideFlags: 0

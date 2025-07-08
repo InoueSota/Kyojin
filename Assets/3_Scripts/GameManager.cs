@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     private bool isFinishDarkAnimation;
     private bool isStartsToLightenUp;
     private bool isStartResult;
+    private bool isFinishCount;
+    private bool isChangeScene;
 
     [Header("Game Parameter")]
     [SerializeField] private float maxTime;
@@ -35,6 +37,37 @@ public class GameManager : MonoBehaviour
     [SerializeField] private FieldsScript fieldsScript;
     [SerializeField] private float startResultIntervalTime;
     private float startResultIntervalTimer;
+    private enum ResultPhase
+    {
+        DEFAULT,
+        YOUR,
+        TRUE,
+        ERROR,
+        RESULT
+    }
+    private ResultPhase resultPhase = ResultPhase.DEFAULT;
+    [SerializeField] private float toYourPhaseTime;
+    [SerializeField] private float toTruePhaseTime;
+    [SerializeField] private float toErrorPhaseTime;
+    [SerializeField] private float toResultPhaseTime;
+    private float phaseTimer;
+    private int redCount;
+    private int errorNumber;
+
+    [Header("Result UI")]
+    [SerializeField] private Text fadeYourCount;
+    [SerializeField] private Text backYourCount;
+    [SerializeField] private Text yourCount;
+    [SerializeField] private Text fadeTrueCount;
+    [SerializeField] private Text backTrueCount;
+    [SerializeField] private Text trueCount;
+    [SerializeField] private Text fadeErrorCount;
+    [SerializeField] private Text backErrorCount;
+    [SerializeField] private Text errorCount;
+    [SerializeField] private GameObject groupErrorObj;
+    [SerializeField] private GameObject groupPerfectObj;
+    [SerializeField] private GameObject groupTooManyObj;
+    [SerializeField] private GameObject groupNotEnoughObj;
 
     [Header("Game UI")]
     [SerializeField] private GameObject saturatedLineObj;
@@ -46,8 +79,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text countText;
     [SerializeField] private GameObject afterFinishTextsObj;
     [SerializeField] private GameObject resultObj;
+    [SerializeField] private GameObject resultBackGroundObj;
 
     [Header("Animators")]
+    [SerializeField] private Animator purposeAnimator;
     [SerializeField] private Animator cameraAnimator;
     [SerializeField] private Animator readyAnimator;
     [SerializeField] private Animator goAnimator;
@@ -55,6 +90,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Animator darkBackgroundAnimator;
     [SerializeField] private Animator finishFramesAnimator;
     [SerializeField] private Animator gameOverDarkAnimator;
+    [SerializeField] private Animator darkAnimator;
 
     void Start()
     {
@@ -98,6 +134,8 @@ public class GameManager : MonoBehaviour
             // UIの表示／非表示を切り替える
             beforeStartObj.SetActive(false);
 
+            // Purposeを消す
+            purposeAnimator.SetTrigger("Start");
             // CameraのAnimationを動かす
             cameraAnimator.SetTrigger("Start");
 
@@ -169,6 +207,11 @@ public class GameManager : MonoBehaviour
                 saturatedLineObj.SetActive(false);
                 resultObj.SetActive(true);
 
+                // YourCountTextに適用
+                fadeYourCount.text = string.Format("{0:00}", discoveryCount);
+                backYourCount.text = string.Format("{0:00}", discoveryCount);
+                yourCount.text = string.Format("{0:00}", discoveryCount);
+
                 // Animation開始
                 finishFramesAnimator.SetTrigger("Start");
 
@@ -187,6 +230,86 @@ public class GameManager : MonoBehaviour
 
                 // Animationを一度でも開始したらフラグをtrueにする
                 isStartsToLightenUp = true;
+            }
+
+            // カウント終了後
+            if (isFinishCount)
+            {
+                phaseTimer += Time.deltaTime;
+
+                switch (resultPhase)
+                {
+                    case ResultPhase.DEFAULT:
+
+                        if (phaseTimer >= toYourPhaseTime)
+                        {
+                            fadeYourCount.gameObject.SetActive(true);
+                            resultPhase = ResultPhase.YOUR;
+                        }
+
+                        break;
+                    case ResultPhase.YOUR:
+
+                        if (phaseTimer >= toTruePhaseTime)
+                        {
+                            fadeTrueCount.gameObject.SetActive(true);
+                            resultPhase = ResultPhase.TRUE;
+                        }
+
+                        break;
+                    case ResultPhase.TRUE:
+
+                        if (phaseTimer >= toErrorPhaseTime)
+                        {
+                            // 表示
+                            groupErrorObj.SetActive(true);
+
+                            errorNumber = discoveryCount - redCount;
+
+                            // 誤差の適用
+                            fadeErrorCount.text = string.Format("{0:00}", errorNumber);
+                            backErrorCount.text = string.Format("{0:00}", errorNumber);
+                            errorCount.text = string.Format("{0:00}", errorNumber);
+
+                            resultPhase = ResultPhase.ERROR;
+                        }
+
+                        break;
+                    case ResultPhase.ERROR:
+
+                        if (phaseTimer >= toResultPhaseTime)
+                        {
+                            // Perfect
+                            if (errorNumber == 0)
+                            {
+                                groupPerfectObj.SetActive(true);
+                            }
+                            // Too Many
+                            else if (errorNumber > 0)
+                            {
+                                groupTooManyObj.SetActive(true);
+                            }
+                            // Not Enough
+                            else if (errorNumber < 0)
+                            {
+                                groupNotEnoughObj.SetActive(true);
+                            }
+
+                            resultPhase = ResultPhase.RESULT;
+                        }
+
+                        break;
+                    case ResultPhase.RESULT:
+
+                        if (!isChangeScene && inputManager.IsTrgger(inputManager.a))
+                        {
+                            darkAnimator.SetTrigger("StartFadeIn");
+
+                            isChangeScene = true;
+                        }
+
+                        break;
+                }
             }
         }
     }
@@ -253,5 +376,15 @@ public class GameManager : MonoBehaviour
 
             isGameOver = _isGameOver;
         }
+    }
+    public void SetTrueCount(int _redCount) { redCount = _redCount; fadeTrueCount.text = string.Format("{0:00}", _redCount); backTrueCount.text = string.Format("{0:00}", _redCount); trueCount.text = string.Format("{0:00}", _redCount); }
+    public void SetIsFinishCount(bool _isFinishCount)
+    {
+        if (_isFinishCount)
+        {
+            resultBackGroundObj.SetActive(true);
+        }
+
+        isFinishCount = _isFinishCount;
     }
 }
