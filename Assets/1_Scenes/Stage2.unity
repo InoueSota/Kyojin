@@ -22562,7 +22562,7 @@ MonoBehaviour:
   gameManager: {fileID: 1819164697}
   cameraManager: {fileID: 1698357681}
   brightRed: {fileID: 2100000, guid: 69a41b06f8a614144a664713fd5127c9, type: 2}
-  countIntervalTime: 0.5
+  countIntervalTime: 0.3
   resultCountClip: {fileID: 8300000, guid: 125560146d969ab498b8b6088df95a7d, type: 3}
   musicAudioSource: {fileID: 0}
   beatSpeed: 2

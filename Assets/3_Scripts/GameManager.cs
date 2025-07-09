@@ -110,6 +110,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioClip goClip;
     [SerializeField] private AudioClip countUpClip;
     [SerializeField] private AudioClip countDownClip;
+    [SerializeField] private AudioClip finishClip;
     private AudioSource audioSource;
 
     void Start()
@@ -191,6 +192,9 @@ public class GameManager : MonoBehaviour
             // UIの表示／非表示を切り替える
             timeLimitObj.SetActive(false);
             finishObj.SetActive(true);
+
+            // Sound
+            audioSource.PlayOneShot(finishClip);
 
             // 遷移するまでのインターバル計測開始
             finishIntervalTimer = finishIntervalTime;

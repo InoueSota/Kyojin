@@ -226,6 +226,7 @@ MonoBehaviour:
   goClip: {fileID: 8300000, guid: 8ccdad9e45ec260468efd6e7bb7005d0, type: 3}
   countUpClip: {fileID: 8300000, guid: 125560146d969ab498b8b6088df95a7d, type: 3}
   countDownClip: {fileID: 8300000, guid: 5d6c3a8f25f4f654ea3a77dc3f2201bd, type: 3}
+  finishClip: {fileID: 8300000, guid: e21bdb47594c6df41a7a5aa0ca6488d2, type: 3}
 --- !u!114 &5759089661822000022
 MonoBehaviour:
   m_ObjectHideFlags: 0
