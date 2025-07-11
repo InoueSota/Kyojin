@@ -322,6 +322,14 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -6080971929573993681, guid: 238dd86225cfa064db02a9920d11fa6d, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -6080971929573993681, guid: 238dd86225cfa064db02a9920d11fa6d, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ebc471c9b90cd3f4b8cdce140cd1a039, type: 2}
     - target: {fileID: 919132149155446097, guid: 238dd86225cfa064db02a9920d11fa6d, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2313,6 +2321,14 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 97ef5df07e2499c4a8a3e057532e0bfd, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 97ef5df07e2499c4a8a3e057532e0bfd, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ebc471c9b90cd3f4b8cdce140cd1a039, type: 2}
     - target: {fileID: 919132149155446097, guid: 97ef5df07e2499c4a8a3e057532e0bfd, type: 3}
       propertyPath: m_Name
       value: TownWall
@@ -2555,6 +2571,7 @@ MonoBehaviour:
   goClip: {fileID: 8300000, guid: 8ccdad9e45ec260468efd6e7bb7005d0, type: 3}
   countUpClip: {fileID: 8300000, guid: 125560146d969ab498b8b6088df95a7d, type: 3}
   countDownClip: {fileID: 8300000, guid: 5d6c3a8f25f4f654ea3a77dc3f2201bd, type: 3}
+  finishClip: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

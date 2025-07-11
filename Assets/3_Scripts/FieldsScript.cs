@@ -222,10 +222,10 @@ public class FieldsScript : MonoBehaviour
                 Vector3 screenPos = new Vector3(posX, posY, 10f);
                 Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
 
-                target.DOMove(worldPos, 0.5f)
+                target.DOMove(worldPos, 1.5f)
                     .SetEase(Ease.InOutQuint)
                 .OnComplete(() => {
-                        target.parent = Camera.main.transform;
+                        //target.parent = Camera.main.transform;
                 });
 
                 target.DOScale(Vector3.one, 0.5f).SetEase(Ease.InOutQuint);
