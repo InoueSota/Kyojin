@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: White
+  m_Name: Orange
   m_Shader: {fileID: -6465566751694194690, guid: c6eaa230a5f92e14a90725f27779bd37, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -41,13 +41,13 @@ Material:
     - _Float: 0.03
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _SmoothMAX: 1.03
-    - _SmoothMIN: 0
-    - _rimPower: 2.2
+    - _SmoothMAX: 2.21
+    - _SmoothMIN: 1.55
+    - _rimPower: 0.05
     m_Colors:
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 0}
-    - _RimColor: {r: 1, g: 1, b: 1, a: 1}
-    - _ShadowColor: {r: 0.4811321, g: 0.4811321, b: 0.4811321, a: 0}
+    - _BaseColor: {r: 1, g: 0.62445575, b: 0.36320752, a: 0}
+    - _RimColor: {r: 0.8867924, g: 0.69111085, b: 0.55633676, a: 1}
+    - _ShadowColor: {r: 0.41509432, g: 0.41509432, b: 0.41509432, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &2923997913932693685

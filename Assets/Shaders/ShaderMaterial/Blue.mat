@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_ToonShader
+  m_Name: Blue
   m_Shader: {fileID: -6465566751694194690, guid: c6eaa230a5f92e14a90725f27779bd37, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -16,7 +16,7 @@ Material:
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses:
   - MOTIONVECTORS
@@ -38,19 +38,19 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Float: -0.25
+    - _Float: 0.03
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _SmoothMAX: 2
-    - _SmoothMIN: 0
-    - _rimPower: 2
+    - _SmoothMAX: 2.21
+    - _SmoothMIN: 1.55
+    - _rimPower: 0.05
     m_Colors:
-    - _BaseColor: {r: 0.47058824, g: 0.47058824, b: 0.47058824, a: 1}
-    - _RimColor: {r: 0, g: 1, b: 0.7307339, a: 1}
-    - _ShadowColor: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 0}
+    - _BaseColor: {r: 0.24474904, g: 0.64562786, b: 0.9433962, a: 0}
+    - _RimColor: {r: 0.24313724, g: 0.64705884, b: 0, a: 1}
+    - _ShadowColor: {r: 0.41509432, g: 0.41509432, b: 0.41509432, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &8344155732195835610
+--- !u!114 &2923997913932693685
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

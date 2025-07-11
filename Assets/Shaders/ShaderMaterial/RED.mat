@@ -7,50 +7,34 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_ToonShader
+  m_Name: RED
   m_Shader: {fileID: -6465566751694194690, guid: c6eaa230a5f92e14a90725f27779bd37, type: 3}
-  m_Parent: {fileID: 0}
+  m_Parent: {fileID: 2100000, guid: 7ff736dfdc4541643912ef7a81e4d70e, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
-  m_LightmapFlags: 2
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses:
   - MOTIONVECTORS
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs:
-    - unity_Lightmaps:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_LightmapsInd:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_ShadowMasks:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+    m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _Float: -0.25
-    - _QueueControl: 0
-    - _QueueOffset: 0
-    - _SmoothMAX: 2
-    - _SmoothMIN: 0
-    - _rimPower: 2
+    - _Float: 0.18
+    - _SmoothMAX: 2.21
     m_Colors:
-    - _BaseColor: {r: 0.47058824, g: 0.47058824, b: 0.47058824, a: 1}
-    - _RimColor: {r: 0, g: 1, b: 0.7307339, a: 1}
-    - _ShadowColor: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 0}
+    - _BaseColor: {r: 1, g: 0, b: 0, a: 0}
+    - _RimColor: {r: 1, g: 0, b: 0, a: 1}
+    - _ShadowColor: {r: 1, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &8344155732195835610
+--- !u!114 &2923997913932693685
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
