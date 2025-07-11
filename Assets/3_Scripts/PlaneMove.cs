@@ -10,11 +10,13 @@ public class PlaneMove : MonoBehaviour
     Vector3 center;
     Vector3 axis;
     float angle;
+    FieldsScript fields;
 
     void Start()
     {
         Debug.Log("飛行機だだだだだｄ");
-        
+
+        fields = GameObject.Find("Fields Characters").GetComponent<FieldsScript>();
 
         // 軌道の中心をランダムに決める
         center = transform.position = new Vector3(Random.Range(-30, 30), Random.Range(25, 30), Random.Range(-15, 30));
@@ -30,16 +32,20 @@ public class PlaneMove : MonoBehaviour
     {
         if (GameObject.Find("GameManager").GetComponent<GameManager>().GetIsStart())
         {
-            angle += rotateSpeed * Time.deltaTime;
+            if (fields.GetCanCount() == false)
+            {
 
-            // 回転行列を使ってぐるぐる回る
-            Vector3 offset = Quaternion.AngleAxis(angle, axis) * Vector3.forward * radius;
+                angle += rotateSpeed * Time.deltaTime;
 
-          
-            transform.position = Vector3.Lerp(transform.position, (center + offset), Time.deltaTime);
+                // 回転行列を使ってぐるぐる回る
+                Vector3 offset = Quaternion.AngleAxis(angle, axis) * Vector3.forward * radius;
 
-            // 前を向くように回転させる（optional）
-            transform.rotation = Quaternion.LookRotation(Vector3.Cross(axis, offset).normalized, axis);
+
+                transform.position = Vector3.Lerp(transform.position, (center + offset), Time.deltaTime);
+
+                // 前を向くように回転させる（optional）
+                transform.rotation = Quaternion.LookRotation(Vector3.Cross(axis, offset).normalized, axis);
+            }
         }
 
        

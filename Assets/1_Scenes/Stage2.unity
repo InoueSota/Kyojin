@@ -2386,6 +2386,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8999146287008608985, guid: 144ac1b190d48564f8194b99d63b8759, type: 3}
+      propertyPath: maxTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8999146287008608985, guid: 144ac1b190d48564f8194b99d63b8759, type: 3}
       propertyPath: countText
       value: 
       objectReference: {fileID: 1032385500}
@@ -17618,6 +17622,7 @@ MonoBehaviour:
   brightRed: {fileID: 2100000, guid: 69a41b06f8a614144a664713fd5127c9, type: 2}
   countIntervalTime: 0.3
   resultCountClip: {fileID: 8300000, guid: 125560146d969ab498b8b6088df95a7d, type: 3}
+  canCount: 0
   musicAudioSource: {fileID: 0}
   beatSpeed: 2
   waveScale: 0.3

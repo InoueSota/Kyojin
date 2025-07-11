@@ -7,9 +7,12 @@ public class CarMove : MonoBehaviour
     private NavMeshAgent agent;
     private int currentIndex = 0;
     public List<Transform> waypoints = new();
+    FieldsScript fields;
 
     void Start()
     {
+        fields = GameObject.Find("Fields Characters").GetComponent<FieldsScript>();
+
         // NavMesh 上にスナップさせる
         NavMeshHit hit;
         if (NavMesh.SamplePosition(transform.position, out hit, 10f, NavMesh.AllAreas))
@@ -36,12 +39,21 @@ public class CarMove : MonoBehaviour
 
     void Update()
     {
-        if (!agent.pathPending && agent.remainingDistance < 0.5f && waypoints.Count > 0)
+        if (fields.GetCanCount() == false)
         {
-            MoveToNext();
-        }
-        agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
+            if (!agent.pathPending && agent.remainingDistance < 0.5f && waypoints.Count > 0)
+            {
+                MoveToNext();
+            }
+            agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
 
+        }
+        else
+        {
+            // ★移動停止処理を追加★
+            agent.ResetPath(); // NavMeshAgentの目的地をクリア
+            agent.velocity = Vector3.zero; // 速度をゼロにして完全停止
+        }
 
     }
 

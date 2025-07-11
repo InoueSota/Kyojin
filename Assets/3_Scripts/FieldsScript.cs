@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
 
 public class FieldsScript : MonoBehaviour
 {
@@ -35,7 +36,7 @@ public class FieldsScript : MonoBehaviour
     [SerializeField] private AudioClip resultCountClip;
     private float countIntervalTimer;
     private int countNum;
-    private bool canCount;
+    [SerializeField] private bool canCount;
     [Header("音関係")]
     [SerializeField] AudioSource musicAudioSource;
     [SerializeField] float beatSpeed = 2f; // 拍の速さ（例：2なら1秒に2回ふくらむ）
@@ -135,24 +136,26 @@ public class FieldsScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        musicAudioSource.GetSpectrumData(spectrum, 0, FFTWindow.BlackmanHarris);
-        float volume = spectrum[1] + spectrum[2] + spectrum[3]; // 低音帯域（調整可）
-
-        foreach (Obj_RandomColor obj in GameObject.FindObjectsOfType<Obj_RandomColor>())
+        if (canCount == false)
         {
-            if (volume > obj.threshold && obj.currentScale <= 1.01f)
+            musicAudioSource.GetSpectrumData(spectrum, 0, FFTWindow.BlackmanHarris);
+            float volume = spectrum[1] + spectrum[2] + spectrum[3]; // 低音帯域（調整可）
+
+            foreach (Obj_RandomColor obj in GameObject.FindObjectsOfType<Obj_RandomColor>())
             {
-                obj.currentScale = 1f + volume * obj.scaleFactor;
-            }
-            else
-            {
-                obj.currentScale = Mathf.Lerp(obj.currentScale, 1f, Time.deltaTime * 3f); // 元に戻る
+                if (volume > obj.threshold && obj.currentScale <= 1.01f)
+                {
+                    obj.currentScale = 1f + volume * obj.scaleFactor;
+                }
+                else
+                {
+                    obj.currentScale = Mathf.Lerp(obj.currentScale, 1f, Time.deltaTime * 3f); // 元に戻る
+                }
+
+                obj.transform.localScale = obj.origineScale * obj.currentScale;
             }
 
-            obj.transform.localScale = obj.origineScale * obj.currentScale;
         }
-
-
         //musicAudioSource.GetSpectrumData(spectrum, 0, FFTWindow.BlackmanHarris);
 
         //// 低音成分から音量を取得（index 1〜4くらいが低音）
@@ -195,19 +198,42 @@ public class FieldsScript : MonoBehaviour
 
             if (countIntervalTimer <= 0f && countNum < RedList.Count)
             {
-                // カウントに対応したGameObjectのMaterialを変更する
                 RedList[countNum].GetComponent<MeshRenderer>().material = brightRed;
+                Transform target = RedList[countNum].transform;
+                target.GetComponent<MeshRenderer>().material = brightRed;
 
-                // カウントを次に進める
+                
+                var agent = RedList[countNum].GetComponent<NavMeshAgent>();
+                if (agent != null) agent.enabled = false;
+
+                // ★グリッド表示のためのパラメータ
+                int columns = 5; // 1行に5つ
+                float spacingX = 130f; // 横の間隔（ピクセル）
+                float spacingY = 130f; // 縦の間隔（ピクセル）
+                float startX = 450f; // 左からの位置
+                float startY = Screen.height - 300f; // 上からの位置（Top揃え）
+
+                int row = countNum / columns;
+                int col = countNum % columns;
+
+                float posX = startX + col * spacingX;
+                float posY = startY - row * spacingY;
+
+                Vector3 screenPos = new Vector3(posX, posY, 10f);
+                Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
+
+                target.DOMove(worldPos, 0.5f)
+                    .SetEase(Ease.InOutQuint)
+                .OnComplete(() => {
+                        target.parent = Camera.main.transform;
+                });
+
+                target.DOScale(Vector3.one, 0.5f).SetEase(Ease.InOutQuint);
+
+                // このあとでカウント++
                 countNum++;
-
-                // 音を鳴らす
                 musicAudioSource.PlayOneShot(resultCountClip);
-
-                // ResultのTrueCountのTextにカウントを適用する
                 gameManager.SetTrueCount(countNum);
-
-                // インターバルの再設定
                 countIntervalTimer = countIntervalTime;
             }
             else if (countIntervalTimer <= 0f && countNum == RedList.Count)
@@ -220,4 +246,5 @@ public class FieldsScript : MonoBehaviour
 
     // Setter
     public void SetCanCount(bool _canCount) { canCount = _canCount; }
+    public bool GetCanCount() { return canCount; }
 }
