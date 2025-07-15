@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4bdbac142070d740ac60e4925c29102, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxTime: 30
+  maxTime: 40
   gameOverDarkTime: 3
   finishIntervalTime: 3
   finishDarkIntervalTime: 3
@@ -205,6 +205,7 @@ MonoBehaviour:
   groupTooManyObj: {fileID: 0}
   groupNotEnoughObj: {fileID: 0}
   explanationObj: {fileID: 0}
+  explanation2Obj: {fileID: 0}
   saturatedLineObj: {fileID: 0}
   beforeStartObj: {fileID: 0}
   gameOverObj: {fileID: 0}

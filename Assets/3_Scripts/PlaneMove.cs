@@ -1,5 +1,3 @@
-using System.Data.Common;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlaneMove : MonoBehaviour

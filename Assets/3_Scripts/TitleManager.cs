@@ -31,6 +31,8 @@ public class TitleManager : MonoBehaviour
 
         // ƒQ[ƒ€ŠJnˆ—
         GameStart();
+
+        if (Input.GetKeyDown(KeyCode.Escape)) { Application.Quit(); }
     }
     void GameStart()
     {

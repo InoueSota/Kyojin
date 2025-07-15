@@ -1,6 +1,5 @@
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -21,12 +20,22 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] GameManager gameManager;
     Vector3 OriginPos;
+    float currentRotation;
+
+    [Header("Scaling")]
+    [SerializeField] private float maxScale;
+    [SerializeField] private float minScale;
+    private float currentScale;
+    [SerializeField] private float scaleTime;
+    private float scaleTimer;
+    private bool isScaling;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         animator = GetComponent<Animator>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        currentRotation = 180f;
     }
 
     // Update is called once per frame
@@ -75,13 +84,23 @@ public class PlayerScript : MonoBehaviour
                 if (Input.GetAxis("Vertical") < 0)
                 {
                     Debug.Log("ãŒ©‚Ä‚é‚É‚å");
-                    transform.rotation = Quaternion.Euler(Input.GetAxis("Vertical")*-20, 180f, 0f);
+                    transform.rotation = Quaternion.Euler(Input.GetAxis("Vertical")*-20, currentRotation, 0f);
                 }
                 else
                 {
-                    transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+                    transform.rotation = Quaternion.Euler(0f, currentRotation, 0f);
                 }
 
+                if (isScaling)
+                {
+                    scaleTimer -= Time.deltaTime;
+                    if (scaleTimer <= 0f) { scaleTimer = 0f; }
+                    currentScale = Mathf.Lerp(minScale, maxScale, scaleTimer / scaleTime);
+
+                    transform.localScale = new(currentScale, currentScale, currentScale);
+
+                    if (scaleTimer <= 0f) { isScaling = false; }
+                }
                
                 break;
             case Mode.Clear:
@@ -91,5 +110,14 @@ public class PlayerScript : MonoBehaviour
 
                 break;
         }
+    }
+
+    // Setter
+    public void SetNewPosition(float _newRotation)
+    {
+        OriginPos = Quaternion.Euler(0, _newRotation, 0) * OriginPos;
+        currentRotation += _newRotation;
+        scaleTimer = scaleTime;
+        isScaling = true;
     }
 }

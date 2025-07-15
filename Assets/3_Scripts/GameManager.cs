@@ -84,6 +84,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Game UI")]
     [SerializeField] private GameObject explanationObj;
+    [SerializeField] private GameObject explanation2Obj;
     [SerializeField] private GameObject saturatedLineObj;
     [SerializeField] private GameObject beforeStartObj;
     [SerializeField] private GameObject gameOverObj;
@@ -148,6 +149,8 @@ public class GameManager : MonoBehaviour
         Finish();
         // リザルト処理
         Result();
+
+        if (Input.GetKeyDown(KeyCode.Escape)) { Application.Quit(); }
     }
     void GameStart()
     {
@@ -230,6 +233,7 @@ public class GameManager : MonoBehaviour
             {
                 // UIの表示／非表示を切り替える
                 explanationObj.SetActive(false);
+                explanation2Obj.SetActive(false);
                 saturatedLineObj.SetActive(false);
                 resultObj.SetActive(true);
 
@@ -250,7 +254,7 @@ public class GameManager : MonoBehaviour
             }
 
             // 明転
-            if (finishIntervalTimer <= -2f && isFinishDarkAnimation && !isStartsToLightenUp)
+            if (finishIntervalTimer <= -1f && isFinishDarkAnimation && !isStartsToLightenUp)
             {
                 // Animation開始
                 darkBackgroundAnimator.SetTrigger("StartFadeOut");
@@ -297,9 +301,9 @@ public class GameManager : MonoBehaviour
                             errorNumber = discoveryCount - redCount;
 
                             // 誤差の適用
-                            fadeErrorCount.text = string.Format("{0:00}", errorNumber);
-                            backErrorCount.text = string.Format("{0:00}", errorNumber);
-                            errorCount.text = string.Format("{0:00}", errorNumber);
+                            fadeErrorCount.text = string.Format("{0:0}", errorNumber);
+                            backErrorCount.text = string.Format("{0:0}", errorNumber);
+                            errorCount.text = string.Format("{0:0}", errorNumber);
 
                             resultPhase = ResultPhase.ERROR;
                         }
@@ -334,7 +338,7 @@ public class GameManager : MonoBehaviour
                         if (!isChangeScene && inputManager.IsTrgger(inputManager.a))
                         {
                             if (errorNumber == 0) { darkAnimator.gameObject.GetComponent<FinishAnimation>().SetNextSceneName("GameClearScene"); }
-                            else { darkAnimator.gameObject.GetComponent<FinishAnimation>().SetNextSceneName("TitleScene"); }
+                            else { darkAnimator.gameObject.GetComponent<FinishAnimation>().SetNextSceneName("GameOverScene"); }
                             darkAnimator.SetTrigger("StartFadeIn");
 
                             isChangeScene = true;

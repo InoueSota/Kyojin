@@ -8,6 +8,7 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private GameObject gameManagerObj;
     private GameManager gameManager;
     private InputManager inputManager;
+    private PlayerScript playerScript;
 
     [Header("Lerp Camera Position")]
     [SerializeField] private Vector3 crouchPosition;
@@ -42,9 +43,27 @@ public class CameraManager : MonoBehaviour
     private int humanCount;
     private float minDoubtTimer;
 
+    [Header("Rotate Parameter")]
+    [SerializeField] private Transform subCameraT;
+    [SerializeField] private RectTransform targetUIRT;
+    [SerializeField] private RectTransform countUIRT1;
+    [SerializeField] private RectTransform countUIRT2;
+    [SerializeField] private float rotateTime;
+    private float rotateTimer;
+    private float rotateValue;
+    private float currentRotate;
+    private float targetRotate;
+    private Vector3 originCrouchPosition;
+    private Vector3 originStayPosition;
+    private Vector3 originPeekPosition;
+    private Vector3 originCrouchRotation;
+    private Vector3 originStayRotation;
+    private Vector3 originPeekRotation;
+
     // Flag
     private bool isLeakingOut;
     private bool isFinishCount;
+    private bool isRotation;
 
     void Awake()
     {
@@ -55,6 +74,7 @@ public class CameraManager : MonoBehaviour
         // Get Other Component
         gameManager = gameManagerObj.GetComponent<GameManager>();
         inputManager = gameManagerObj.GetComponent<InputManager>();
+        playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
 
         // Set Parameter
         targetPosition = stayPosition;
@@ -73,6 +93,8 @@ public class CameraManager : MonoBehaviour
         {
             if (!isLeakingOut)
             {
+                // ‰ñ“]
+                CameraRotate();
                 // ”`‚«
                 CameraMove();
                 // ƒoƒŒ‚Ä‚¢‚é‚©
@@ -121,6 +143,77 @@ public class CameraManager : MonoBehaviour
             backWipeFrame.color = new(backWipeFrame.color.r, backWipeFrame.color.g, backWipeFrame.color.b, inputVertical + 1f);
             wipeFrame.color = new(wipeFrame.color.r, wipeFrame.color.g, wipeFrame.color.b, inputVertical + 1f);
             wipe.color = new(wipe.color.r, wipe.color.g, wipe.color.b, inputVertical + 1f);
+        }
+    }
+    void CameraRotate()
+    {
+        if (!isRotation && (inputManager.IsTrgger(inputManager.lb) || inputManager.IsTrgger(inputManager.rb)))
+        {
+            // ¶•ûŒü‚É‰ñ“]
+            if (inputManager.IsTrgger(inputManager.lb))
+            {
+                targetRotate = 90f;
+            }
+            // ‰E•ûŒü‚É‰ñ“]
+            else if (inputManager.IsTrgger(inputManager.rb))
+            {
+                targetRotate = -90f;
+            }
+            // ‚Ç‚¿‚ç‚Ì•ûŒü‚É‰ñ“]‚·‚éê‡‚Å‚às‚¤ˆ—
+            currentRotate = 0f;
+            originPeekPosition = peekPosition;
+            originStayPosition = stayPosition;
+            originCrouchPosition = crouchPosition;
+            originPeekRotation = peekRotation;
+            originStayRotation = stayRotation;
+            originCrouchRotation = crouchRotation;
+            rotateTimer = rotateTime;
+            isRotation = true;
+        }
+
+        if (isRotation)
+        {
+            // ŒvZ
+            rotateTimer -= Time.deltaTime;
+            if (rotateTimer <= 0f) { rotateTimer = 0f; }
+            rotateValue = Mathf.Lerp(targetRotate, currentRotate, rotateTimer / rotateTime);
+
+            // ‰Šú‰»
+            peekPosition = originPeekPosition;
+            stayPosition = originStayPosition;
+            crouchPosition = originCrouchPosition;
+            peekRotation = originPeekRotation;
+            stayRotation = originStayRotation;
+            crouchRotation = originCrouchRotation;
+
+            // ‰ñ“]
+            peekPosition = Quaternion.Euler(0, rotateValue, 0) * peekPosition;
+            stayPosition = Quaternion.Euler(0, rotateValue, 0) * stayPosition;
+            crouchPosition = Quaternion.Euler(0, rotateValue, 0) * crouchPosition;
+            peekRotation.y += rotateValue;
+            stayRotation.y += rotateValue;
+            crouchRotation.y += rotateValue;
+
+            // ‰ñ“]I—¹
+            if (rotateTimer <= 0f)
+            {
+                // SubCamera‚ğˆÚ“®
+                subCameraT.position = Quaternion.Euler(0, rotateValue, 0) * subCameraT.position;
+                subCameraT.rotation = Quaternion.Euler(0f, subCameraT.eulerAngles.y + rotateValue, 0f);
+
+                // Player‚ğˆÚ“®
+                playerScript.SetNewPosition(rotateValue);
+
+                // UI‚ğˆÚ“®
+                targetUIRT.position = Quaternion.Euler(0, rotateValue, 0) * targetUIRT.position;
+                countUIRT1.position = Quaternion.Euler(0, rotateValue, 0) * countUIRT1.position;
+                countUIRT2.position = Quaternion.Euler(0, rotateValue, 0) * countUIRT2.position;
+                targetUIRT.rotation = Quaternion.Euler(0f, targetUIRT.eulerAngles.y + rotateValue, 0f);
+                countUIRT1.rotation = Quaternion.Euler(0f, countUIRT1.eulerAngles.y + rotateValue, 0f);
+                countUIRT2.rotation = Quaternion.Euler(0f, countUIRT2.eulerAngles.y + rotateValue, 0f);
+                
+                isRotation = false;
+            }
         }
     }
     void Chase()
