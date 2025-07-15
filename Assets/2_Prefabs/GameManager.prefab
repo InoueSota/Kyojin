@@ -179,7 +179,7 @@ MonoBehaviour:
   maxTime: 30
   gameOverDarkTime: 3
   finishIntervalTime: 3
-  finishDarkIntervalTime: 3.5
+  finishDarkIntervalTime: 3
   fieldsScript: {fileID: 0}
   startResultIntervalTime: 2
   toYourPhaseTime: 1

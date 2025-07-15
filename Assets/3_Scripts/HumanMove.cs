@@ -54,7 +54,7 @@ public class HumanMove : MonoBehaviour
             //transform.rotation = Quaternion.Euler(-90, -90, transform.rotation.z);
             //transform.position += 3 * moveDirection * Time.deltaTime;
         }
-        else
+        else if (agent.isOnNavMesh)
         {
             // ★移動停止処理を追加★
             agent.ResetPath(); // NavMeshAgentの目的地をクリア
@@ -65,7 +65,10 @@ public class HumanMove : MonoBehaviour
     {
         if (waypoints.Count == 0) return;
 
-        currentIndex = Random.Range(0, waypoints.Count);
-        agent.SetDestination(waypoints[currentIndex].position);
+        if (agent.isOnNavMesh)
+        {
+            currentIndex = Random.Range(0, waypoints.Count);
+            agent.SetDestination(waypoints[currentIndex].position);
+        }
     }
 }

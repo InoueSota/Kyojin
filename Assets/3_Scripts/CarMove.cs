@@ -48,7 +48,7 @@ public class CarMove : MonoBehaviour
             agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
 
         }
-        else
+        else if (agent.isOnNavMesh)
         {
             // ★移動停止処理を追加★
             agent.ResetPath(); // NavMeshAgentの目的地をクリア

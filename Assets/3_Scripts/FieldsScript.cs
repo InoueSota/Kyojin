@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Audio;
-using UnityEngine.UI;
-using static UnityEngine.GraphicsBuffer;
 
 public class FieldsScript : MonoBehaviour
 {
